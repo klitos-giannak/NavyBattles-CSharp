@@ -56,7 +56,6 @@
     </Compile>
     <Compile Include="Data\Coords.cs" />
     <Compile Include="Data\GameData.cs" />
-    <Compile Include="Data\Ship.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
