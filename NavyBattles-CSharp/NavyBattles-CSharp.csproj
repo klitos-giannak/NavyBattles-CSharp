@@ -54,9 +54,9 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="New Folder\Coords.cs" />
-    <Compile Include="New Folder\GameData.cs" />
-    <Compile Include="New Folder\Ship.cs" />
+    <Compile Include="Data\Coords.cs" />
+    <Compile Include="Data\GameData.cs" />
+    <Compile Include="Data\Ship.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -64,7 +64,7 @@
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="New Folder" />
+    <Folder Include="Data" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
