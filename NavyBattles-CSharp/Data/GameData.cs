@@ -49,7 +49,7 @@ namespace NavyBattles_CSharp.New_Folder
 		{
 			for (int i=0; i<myGrid.GetLength(0); i++)
 			{
-				for (int j=0; i<myGrid.GetLength(1); j++)
+				for (int j=0; j<myGrid.GetLength(1); j++)
 				{
 					myGrid[i,j]= BoxState.CLEAR;
 					enemyGrid[i,j]= BoxState.CLEAR;
