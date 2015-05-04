@@ -8,7 +8,7 @@
  */
 using System;
 
-namespace NavyBattles_CSharp
+namespace NavyBattles_CSharp.Data
 {
 	/// <summary>
 	/// Description of Ship.

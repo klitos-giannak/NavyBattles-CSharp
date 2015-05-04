@@ -8,7 +8,7 @@
  */
 using System;
 
-namespace NavyBattles_CSharp.New_Folder
+namespace NavyBattles_CSharp.Data
 {
 	/// <summary>
 	/// Description of Coords.
