@@ -29,5 +29,10 @@ namespace NavyBattles_CSharp
 			// TODO: Add constructor code after the InitializeComponent() call.
 			//
 		}
+		void StartButtonClick(object sender, EventArgs e)
+		{
+			GameAreaForm gameForm = new GameAreaForm();
+			gameForm.Show();
+		}
 	}
 }
