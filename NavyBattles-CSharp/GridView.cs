@@ -35,10 +35,8 @@ namespace NavyBattles_CSharp
 			Pen pen=new Pen(brush);
 			for ( int i=0; i<=10; i++)
 			{
-				e.Graphics.DrawLine(pen,29,(i*cellHeight)+29,
-				                    Size.Width,(i*cellHeight)+29);
-				e.Graphics.DrawLine(pen,(i*cellWidth)+29,29,
-				                    (i*cellWidth)+29,Size.Height );
+				e.Graphics.DrawLine(pen,29,(i*cellHeight)+29, Size.Width,(i*cellHeight)+29); //horizontal
+				e.Graphics.DrawLine(pen,(i*cellWidth)+29,29, (i*cellWidth)+29,Size.Height ); //vertical
 			}
 			
 		}
@@ -54,7 +52,7 @@ namespace NavyBattles_CSharp
 		
 		public int convertWindowToGridXCoordinate(int x)
 		{
-			double gridX=(x-29)/(double)cellWidth;
+			double gridX = (x-29) / (double) cellWidth;
 			if (gridX < 0)
 				return -1;
 			else
@@ -63,7 +61,7 @@ namespace NavyBattles_CSharp
 		
 		public int convertWindowToGridYCoordinate(int y)
 		{
-			 double gridY=(y-29)/(double)cellHeight;
+			double gridY = (y-29) / (double) cellHeight;
 			if (gridY < 0)
 				return -1;
 			else
