@@ -32,6 +32,19 @@ namespace NavyBattles_CSharp.Data
 			set{ myY=value;}
 		}
 		
+		public override bool Equals(Object obj)
+		{
+			if (obj is Coords)
+			{
+				Coords cObj=(Coords)obj;
+				if (cObj.X==X && cObj.Y==Y)
+				{
+					return true;
+				}
+			}
+			return false;
+		}
+		
 		
 	}
 	public enum Direction

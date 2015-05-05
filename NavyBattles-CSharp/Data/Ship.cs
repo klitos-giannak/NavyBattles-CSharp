@@ -43,5 +43,15 @@ namespace NavyBattles_CSharp.Data
 			}
 			
 		}
+		
+		public bool isBlockOccupied(Coords block)
+		{
+			foreach(Coords shipBlock in shipCoords)
+			{
+				if(shipBlock.Equals(block))
+					return true;
+			}
+		    return false;
+		}
 	}
 }
