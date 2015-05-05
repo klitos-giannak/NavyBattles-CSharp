@@ -31,8 +31,15 @@ namespace NavyBattles_CSharp.Data
 			{
 				hits[i]=false; //initialize all cells to not hit
 				
-				//TO-DO initialize shipCoords
-				
+				//initialize all cells to correct coordinates
+				if(direction==Direction.VERTICAL)
+				{
+					shipCoords[i]=new Coords(startPoint.X,startPoint.Y+i);
+				}
+				else					
+				{
+					shipCoords[i]=new Coords(startPoint.X+i,startPoint.Y);
+				}
 			}
 			
 		}
