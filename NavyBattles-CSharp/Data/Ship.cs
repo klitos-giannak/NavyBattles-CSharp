@@ -35,6 +35,12 @@ namespace NavyBattles_CSharp.Data
 				
 			}
 			
+			for (int i=0 ; i<size ; i++)
+			{
+				
+				shipCoords[]= new Coords[Coords startPoint,Direction direction, hits]
+					
+			}
 		}
 	}
 }
