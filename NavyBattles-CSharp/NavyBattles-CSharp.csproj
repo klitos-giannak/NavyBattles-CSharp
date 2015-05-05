@@ -50,6 +50,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\Fleet.cs" />
     <Compile Include="Data\Ship.cs" />
     <Compile Include="GameAreaForm.cs" />
     <Compile Include="GameAreaForm.Designer.cs">
