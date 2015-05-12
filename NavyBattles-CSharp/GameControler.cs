@@ -7,6 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 using System;
+using NavyBattles_CSharp;
 using NavyBattles_CSharp.Data;
 
 namespace NavyBattles_CSharp
@@ -54,5 +55,27 @@ namespace NavyBattles_CSharp
 				startGame();			
 			
 		}
+		
+		public Shot enemyFired(Shot shot)
+		{
+			if(data.isBlockOccupied(shot.Coords))
+			{
+				data.setMyBoxState(shot.Coords.X,shot.Coords.Y,
+				                   GameData.BoxState.BOMBED);
+				shot.Hit = true;
+			}
+			else
+			{
+				data.setMyBoxState(shot.Coords.X,shot.Coords.Y,
+				                   GameData.BoxState.MISSED);
+				shot.Hit = false;
+			}
+			
+			gameForm.Invalidate();
+			
+			return shot;
+				                   
+		}
+		
 	}
 }

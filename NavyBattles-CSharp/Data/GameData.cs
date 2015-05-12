@@ -19,7 +19,8 @@ namespace NavyBattles_CSharp.Data
 		
 		private BoxState[,] myGrid=new BoxState[GRIDSIZE,GRIDSIZE];
 		private BoxState[,] enemyGrid=new BoxState[GRIDSIZE,GRIDSIZE];
-			
+		private Fleet fleet=new Fleet();
+		
 		public GameData()
 		{
 			clearGrids();
@@ -55,12 +56,20 @@ namespace NavyBattles_CSharp.Data
 					enemyGrid[i,j]= BoxState.CLEAR;
 				}
 			}
-		}	
+		}
+		
+		public bool isBlockOccupied(Coords block)
+		{
+			return fleet.isBlockOccupied(block);
+		}
+		
 		
 		public enum BoxState
 		{
-			CLEAR,MISSED,BOMBER
+			CLEAR,MISSED,BOMBED
 		}
+		
+		
 	}
 	 
 	
