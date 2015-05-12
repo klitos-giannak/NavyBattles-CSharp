@@ -24,7 +24,9 @@ namespace NavyBattles_CSharp
 		
 		public GridView()
 		{
-			BackColor= Color.Aquamarine;
+			SetStyle(ControlStyles.SupportsTransparentBackColor, true);
+			BackColor= Color.Transparent;
+			ForeColor=Color.White;
 			gd = new GameData();
 		}
 		
