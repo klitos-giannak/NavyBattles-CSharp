@@ -31,8 +31,8 @@ namespace NavyBattles_CSharp
 		}
 		void StartButtonClick(object sender, EventArgs e)
 		{
-			GameAreaForm gameForm = new GameAreaForm();
-			gameForm.Show();
+			GameControler backEnd=new GameControler();
+			backEnd.connected();
 		}
 	}
 }

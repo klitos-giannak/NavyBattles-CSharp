@@ -56,6 +56,7 @@
     <Compile Include="GameAreaForm.Designer.cs">
       <DependentUpon>GameAreaForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="GameControler.cs" />
     <Compile Include="GridView.cs" />
     <Compile Include="MainForm.cs" />
     <Compile Include="MainForm.Designer.cs">
