@@ -77,5 +77,38 @@ namespace NavyBattles_CSharp
 				                   
 		}
 		
+		public void shoot(Coords coords) // tin kalei to UI otan paizei o paikths
+		{
+			Shot shot = new Shot(coords);
+			//stelnoume to shot sto network k tous afhnoume na kanoun ta dika tous.
+			
+		}
+		
+		/// <summary>
+		/// kaleitai ap to duktio pros epivevaiwsh ths volhs mas
+		/// k enhmerwnei to diko mas enemyGrid tou UI.
+		/// </summary>
+		/// <param name="shot"></param>
+		
+		public void shotResult(Shot shot)
+		{
+			if(shot.Confirmed == false)
+				return;
+							
+				
+			if(shot.Hit)
+			{
+				data.setEnemyBoxState(shot.Coords.X,shot.Coords.Y,
+				                   GameData.BoxState.BOMBED);
+				
+			}
+			else
+			{
+				data.setEnemyBoxState(shot.Coords.X,shot.Coords.Y,
+				                   GameData.BoxState.MISSED);
+			}
+			
+			gameForm.Invalidate();
+		}
 	}
 }
