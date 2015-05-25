@@ -67,6 +67,7 @@
     </Compile>
     <Compile Include="Data\Coords.cs" />
     <Compile Include="Data\GameData.cs" />
+    <Compile Include="NetworkController.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Shot.cs" />

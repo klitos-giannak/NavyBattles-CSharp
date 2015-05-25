@@ -17,6 +17,7 @@ namespace NavyBattles_CSharp
 	/// </summary>
 	public class GameControler
 	{
+		private NetworkController net;
 		private GameData data;
 		private GameAreaForm gameForm;
 		private bool meReady;
@@ -24,6 +25,7 @@ namespace NavyBattles_CSharp
 		
 		public GameControler()
 		{
+			net = new NetworkController();
 			data=new GameData();
 			gameForm=new GameAreaForm();
 			meReady=false;
