@@ -7,6 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 using System;
+using Newtonsoft.Json;
 using NavyBattles_CSharp.Data;
 
 namespace NavyBattles_CSharp
@@ -61,14 +62,14 @@ namespace NavyBattles_CSharp
 		
 		public string toJson()
 		{
-			//TO_DO: convert and return 'this' into json representation
-			return null;
+			//xrisi tou json.net gia metatropi tou antikeimenou mas se json string.
+			return JsonConvert.SerializeObject(this);
 		}
 		
 		public static Shot jsonToShot(string json)
 		{
-			//TO_DO: convert the given json string into a Shot object and return it
-			return null;
+			// xrisi tou json.net gia metatropi tou string json se Shot object.
+			return JsonConvert.DeserializeObject<Shot>(json);;
 		}
 		
 	}
