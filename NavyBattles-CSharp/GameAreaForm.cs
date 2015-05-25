@@ -44,7 +44,18 @@ namespace NavyBattles_CSharp
 		
 		void ShipMouseUp(object sender, MouseEventArgs e)
 		{
+			if (location!=Point.Empty)
+			{
+				PictureBox ship=sender as PictureBox;
+				Point loc=ship.Location;
+				if(loc.X > myBoard.Location.X && loc.X <= myBoard.Location.X + myBoard.Width
+				  && loc.Y > myBoard.Location.Y && loc.Y <= myBoard.Location.Y + myBoard.Height )
+				{
+					MessageBox.Show("correct");
+				}
+			}
 			location=Point.Empty;
+			
 		}
 		
 		void ShipMouseDown(object sender, MouseEventArgs e)
