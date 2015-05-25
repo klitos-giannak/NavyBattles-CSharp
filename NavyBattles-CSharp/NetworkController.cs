@@ -32,7 +32,7 @@ namespace NavyBattles_CSharp
 		
 		private string receive ()
 		{
-			
+			return null;
 		}
 	}
 }
