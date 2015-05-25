@@ -82,16 +82,16 @@ namespace NavyBattles_CSharp
 			this.label38 = new System.Windows.Forms.Label();
 			this.label39 = new System.Windows.Forms.Label();
 			this.label40 = new System.Windows.Forms.Label();
-			this.pictureBox1 = new System.Windows.Forms.PictureBox();
-			this.pictureBox2 = new System.Windows.Forms.PictureBox();
-			this.pictureBox3 = new System.Windows.Forms.PictureBox();
-			this.pictureBox4 = new System.Windows.Forms.PictureBox();
-			this.pictureBox5 = new System.Windows.Forms.PictureBox();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+			this.ship1 = new System.Windows.Forms.PictureBox();
+			this.ship2 = new System.Windows.Forms.PictureBox();
+			this.ship3 = new System.Windows.Forms.PictureBox();
+			this.ship4 = new System.Windows.Forms.PictureBox();
+			this.ship5 = new System.Windows.Forms.PictureBox();
+			((System.ComponentModel.ISupportInitialize)(this.ship1)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.ship2)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.ship3)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.ship4)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.ship5)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// myBoard
@@ -555,55 +555,70 @@ namespace NavyBattles_CSharp
 			this.label40.Text = "1";
 			this.label40.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
-			// pictureBox1
+			// ship1
 			// 
-			this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-			this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-			this.pictureBox1.Location = new System.Drawing.Point(48, 494);
-			this.pictureBox1.Name = "pictureBox1";
-			this.pictureBox1.Size = new System.Drawing.Size(73, 37);
-			this.pictureBox1.TabIndex = 42;
-			this.pictureBox1.TabStop = false;
+			this.ship1.BackColor = System.Drawing.Color.Transparent;
+			this.ship1.Image = ((System.Drawing.Image)(resources.GetObject("ship1.Image")));
+			this.ship1.Location = new System.Drawing.Point(48, 494);
+			this.ship1.Name = "ship1";
+			this.ship1.Size = new System.Drawing.Size(73, 37);
+			this.ship1.TabIndex = 42;
+			this.ship1.TabStop = false;
+			this.ship1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ShipMouseDown);
+			this.ship1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ShipMouseMove);
+			this.ship1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ShipMouseUp);
 			// 
-			// pictureBox2
+			// ship2
 			// 
-			this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
-			this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-			this.pictureBox2.Location = new System.Drawing.Point(147, 494);
-			this.pictureBox2.Name = "pictureBox2";
-			this.pictureBox2.Size = new System.Drawing.Size(112, 37);
-			this.pictureBox2.TabIndex = 43;
-			this.pictureBox2.TabStop = false;
+			this.ship2.BackColor = System.Drawing.Color.Transparent;
+			this.ship2.Image = ((System.Drawing.Image)(resources.GetObject("ship2.Image")));
+			this.ship2.Location = new System.Drawing.Point(147, 494);
+			this.ship2.Name = "ship2";
+			this.ship2.Size = new System.Drawing.Size(112, 37);
+			this.ship2.TabIndex = 43;
+			this.ship2.TabStop = false;
+			this.ship2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ShipMouseDown);
+			this.ship2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ShipMouseMove);
+			this.ship2.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ShipMouseUp);
 			// 
-			// pictureBox3
+			// ship3
 			// 
-			this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
-			this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-			this.pictureBox3.Location = new System.Drawing.Point(284, 484);
-			this.pictureBox3.Name = "pictureBox3";
-			this.pictureBox3.Size = new System.Drawing.Size(145, 47);
-			this.pictureBox3.TabIndex = 44;
-			this.pictureBox3.TabStop = false;
+			this.ship3.BackColor = System.Drawing.Color.Transparent;
+			this.ship3.Image = ((System.Drawing.Image)(resources.GetObject("ship3.Image")));
+			this.ship3.Location = new System.Drawing.Point(284, 484);
+			this.ship3.Name = "ship3";
+			this.ship3.Size = new System.Drawing.Size(145, 47);
+			this.ship3.TabIndex = 44;
+			this.ship3.TabStop = false;
+			this.ship3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ShipMouseDown);
+			this.ship3.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ShipMouseMove);
+			this.ship3.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ShipMouseUp);
 			// 
-			// pictureBox4
+			// ship4
 			// 
-			this.pictureBox4.BackColor = System.Drawing.Color.Transparent;
-			this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
-			this.pictureBox4.Location = new System.Drawing.Point(33, 561);
-			this.pictureBox4.Name = "pictureBox4";
-			this.pictureBox4.Size = new System.Drawing.Size(202, 50);
-			this.pictureBox4.TabIndex = 45;
-			this.pictureBox4.TabStop = false;
+			this.ship4.BackColor = System.Drawing.Color.Transparent;
+			this.ship4.Image = ((System.Drawing.Image)(resources.GetObject("ship4.Image")));
+			this.ship4.Location = new System.Drawing.Point(33, 561);
+			this.ship4.Name = "ship4";
+			this.ship4.Size = new System.Drawing.Size(202, 50);
+			this.ship4.TabIndex = 45;
+			this.ship4.TabStop = false;
+			this.ship4.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ShipMouseDown);
+			this.ship4.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ShipMouseMove);
+			this.ship4.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ShipMouseUp);
 			// 
-			// pictureBox5
+			// ship5
 			// 
-			this.pictureBox5.BackColor = System.Drawing.Color.Transparent;
-			this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
-			this.pictureBox5.Location = new System.Drawing.Point(241, 570);
-			this.pictureBox5.Name = "pictureBox5";
-			this.pictureBox5.Size = new System.Drawing.Size(228, 41);
-			this.pictureBox5.TabIndex = 46;
-			this.pictureBox5.TabStop = false;
+			this.ship5.BackColor = System.Drawing.Color.Transparent;
+			this.ship5.Image = ((System.Drawing.Image)(resources.GetObject("ship5.Image")));
+			this.ship5.Location = new System.Drawing.Point(241, 570);
+			this.ship5.Name = "ship5";
+			this.ship5.Size = new System.Drawing.Size(228, 41);
+			this.ship5.TabIndex = 46;
+			this.ship5.TabStop = false;
+			this.ship5.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ShipMouseDown);
+			this.ship5.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ShipMouseMove);
+			this.ship5.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ShipMouseUp);
 			// 
 			// GameAreaForm
 			// 
@@ -612,11 +627,11 @@ namespace NavyBattles_CSharp
 			this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
 			this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
 			this.ClientSize = new System.Drawing.Size(968, 640);
-			this.Controls.Add(this.pictureBox5);
-			this.Controls.Add(this.pictureBox4);
-			this.Controls.Add(this.pictureBox3);
-			this.Controls.Add(this.pictureBox2);
-			this.Controls.Add(this.pictureBox1);
+			this.Controls.Add(this.ship5);
+			this.Controls.Add(this.ship4);
+			this.Controls.Add(this.ship3);
+			this.Controls.Add(this.ship2);
+			this.Controls.Add(this.ship1);
 			this.Controls.Add(this.label31);
 			this.Controls.Add(this.label32);
 			this.Controls.Add(this.label33);
@@ -662,19 +677,18 @@ namespace NavyBattles_CSharp
 			this.Name = "GameAreaForm";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "GameAreaForm";
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.ship1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.ship2)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.ship3)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.ship4)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.ship5)).EndInit();
 			this.ResumeLayout(false);
 
 		}
-		private System.Windows.Forms.PictureBox pictureBox5;
-		private System.Windows.Forms.PictureBox pictureBox4;
-		private System.Windows.Forms.PictureBox pictureBox3;
-		private System.Windows.Forms.PictureBox pictureBox2;
-		private System.Windows.Forms.PictureBox pictureBox1;
+		private System.Windows.Forms.PictureBox ship5;
+		private System.Windows.Forms.PictureBox ship4;
+		private System.Windows.Forms.PictureBox ship3;
+		private System.Windows.Forms.PictureBox ship2;
 		private System.Windows.Forms.Label label40;
 		private System.Windows.Forms.Label label39;
 		private System.Windows.Forms.Label label38;
@@ -714,5 +728,6 @@ namespace NavyBattles_CSharp
 		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.Label label2;
+		private System.Windows.Forms.PictureBox ship1;
 	}
 }

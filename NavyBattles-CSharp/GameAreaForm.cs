@@ -17,6 +17,7 @@ namespace NavyBattles_CSharp
 	/// </summary>
 	public partial class GameAreaForm : Form
 	{
+		private Point location;
 		public GameAreaForm()
 		{
 			//
@@ -27,6 +28,41 @@ namespace NavyBattles_CSharp
 			//
 			// TODO: Add constructor code after the InitializeComponent() call.
 			//
+		}
+		
+		void ShipMouseMove(object sender, MouseEventArgs e)
+		{
+			if (location!=Point.Empty)
+			{
+				PictureBox ship=sender as PictureBox;
+				Point newLocation=ship.Location;
+				newLocation.X+=e.X-location.X;
+				newLocation.Y+=e.Y-location.Y;
+				ship.Location=newLocation;
+			}
+		}
+		
+		void ShipMouseUp(object sender, MouseEventArgs e)
+		{
+			location=Point.Empty;
+		}
+		
+		void ShipMouseDown(object sender, MouseEventArgs e)
+		{
+			if(e.Button==MouseButtons.Left) 
+			{
+				location=new Point (e.X,e.Y);
+			}
+			else
+			{
+				PictureBox ship = sender as PictureBox;
+				int width=ship.Width;
+				int height=ship.Height;
+				ship.Image.RotateFlip(RotateFlipType.Rotate270FlipY);
+				ship.Width=height;
+				ship.Height=width;
+				ship.Invalidate();
+			}
 		}
 	}
 }
