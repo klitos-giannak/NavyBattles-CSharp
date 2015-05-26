@@ -18,6 +18,8 @@ namespace NavyBattles_CSharp
 		private System.Windows.Forms.Button joinButton;
 		private System.Windows.Forms.TextBox ipTextBox;
 		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.Label label2;
+		private System.Windows.Forms.Label hostIP;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -45,6 +47,8 @@ namespace NavyBattles_CSharp
 			this.joinButton = new System.Windows.Forms.Button();
 			this.ipTextBox = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
+			this.label2 = new System.Windows.Forms.Label();
+			this.hostIP = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
 			// hostButton
@@ -75,7 +79,7 @@ namespace NavyBattles_CSharp
 			// 
 			// ipTextBox
 			// 
-			this.ipTextBox.Location = new System.Drawing.Point(672, 33);
+			this.ipTextBox.Location = new System.Drawing.Point(672, 66);
 			this.ipTextBox.Name = "ipTextBox";
 			this.ipTextBox.Size = new System.Drawing.Size(149, 20);
 			this.ipTextBox.TabIndex = 3;
@@ -83,14 +87,37 @@ namespace NavyBattles_CSharp
 			// label1
 			// 
 			this.label1.BackColor = System.Drawing.Color.Transparent;
-			this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+			this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
 			this.label1.ForeColor = System.Drawing.Color.PowderBlue;
-			this.label1.Location = new System.Drawing.Point(648, 33);
+			this.label1.Location = new System.Drawing.Point(544, 66);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(29, 20);
+			this.label1.Size = new System.Drawing.Size(122, 20);
 			this.label1.TabIndex = 4;
-			this.label1.Text = "IP";
+			this.label1.Text = "IP TO JOIN";
 			this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+			// 
+			// label2
+			// 
+			this.label2.BackColor = System.Drawing.Color.Transparent;
+			this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+			this.label2.ForeColor = System.Drawing.Color.PowderBlue;
+			this.label2.Location = new System.Drawing.Point(548, 29);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(117, 23);
+			this.label2.TabIndex = 5;
+			this.label2.Text = "MY IP";
+			this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			// 
+			// hostIP
+			// 
+			this.hostIP.BackColor = System.Drawing.Color.Transparent;
+			this.hostIP.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+			this.hostIP.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+			this.hostIP.Location = new System.Drawing.Point(671, 32);
+			this.hostIP.Name = "hostIP";
+			this.hostIP.Size = new System.Drawing.Size(151, 20);
+			this.hostIP.TabIndex = 6;
+			this.hostIP.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
 			// MainForm
 			// 
@@ -99,6 +126,8 @@ namespace NavyBattles_CSharp
 			this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
 			this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
 			this.ClientSize = new System.Drawing.Size(833, 442);
+			this.Controls.Add(this.hostIP);
+			this.Controls.Add(this.label2);
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.ipTextBox);
 			this.Controls.Add(this.joinButton);
