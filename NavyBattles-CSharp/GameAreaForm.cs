@@ -51,8 +51,13 @@ namespace NavyBattles_CSharp
 				if(loc.X > myBoard.Location.X && loc.X <= myBoard.Location.X + myBoard.Width
 				  && loc.Y > myBoard.Location.Y && loc.Y <= myBoard.Location.Y + myBoard.Height )
 				{
-					MessageBox.Show("correct");
+					int gridx=myBoard.convertWindowToGridXCoordinate(loc.X-myBoard.Location.X);
+					int gridy=myBoard.convertWindowToGridYCoordinate(loc.Y-myBoard.Location.Y);
+					MessageBox.Show(gridx + "\n" + gridy);
 				}
+					 
+					
+					
 			}
 			location=Point.Empty;
 			
