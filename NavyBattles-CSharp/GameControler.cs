@@ -7,6 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 using System;
+using System.Windows.Forms;
 using NavyBattles_CSharp;
 using NavyBattles_CSharp.Data;
 
@@ -22,6 +23,7 @@ namespace NavyBattles_CSharp
 		private GameAreaForm gameForm;
 		private bool meReady;
 		private bool otherReady;
+		
 		
 		public GameControler()
 		{
@@ -112,5 +114,29 @@ namespace NavyBattles_CSharp
 			
 			gameForm.Invalidate();
 		}
+		public void checkWin()
+		{
+			int myHitCounter=0;
+			int enemyHitCounter=0;
+			for(int i=0; i<10;i++)
+			{	
+				for(int j=0; j<10; j++)
+				{
+					if (data.getMyBoxState(i,j) == GameData.BoxState.BOMBED)
+						myHitCounter++;
+					if(data.getEnemyBoxState(i,j) == GameData.BoxState.BOMBED)
+						enemyHitCounter++;
+				}
+			}
+			
+			if(enemyHitCounter==GameData.MAXHITS)
+			MessageBox.Show(" PLAYER 2 LOSE");
+			
+	 		if(myHitCounter==GameData.MAXHITS)
+	 		MessageBox.Show(" PLAYER 1 LOSE  ");			
+			
+		}
 	}
+	
 }
+

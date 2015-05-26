@@ -20,6 +20,7 @@ namespace NavyBattles_CSharp.Data
 		private BoxState[,] myGrid=new BoxState[GRIDSIZE,GRIDSIZE];
 		private BoxState[,] enemyGrid=new BoxState[GRIDSIZE,GRIDSIZE];
 		private Fleet fleet=new Fleet();
+		public const int MAXHITS=20;
 		
 		public GameData()
 		{
@@ -68,6 +69,9 @@ namespace NavyBattles_CSharp.Data
 		{
 			CLEAR,MISSED,BOMBED
 		}
+		
+		
+		
 		
 		
 	}
