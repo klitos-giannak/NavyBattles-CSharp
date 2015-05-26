@@ -28,6 +28,11 @@ namespace NavyBattles_CSharp
 			
 		}
 		
+		public void sendOrder(int order)
+		{
+			//TO DO send to party the play order
+		}
+		
 		public void sendShot(Shot shot)
 		{
 			send(shot.toJson());

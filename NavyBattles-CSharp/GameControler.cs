@@ -25,9 +25,9 @@ namespace NavyBattles_CSharp
 		private bool otherReady;
 		
 		
-		public GameControler()
+		public GameControler(NetworkController network)
 		{
-			net = new NetworkController();
+			net = network;
 			data=new GameData();
 			gameForm=new GameAreaForm();
 			meReady=false;
@@ -136,7 +136,18 @@ namespace NavyBattles_CSharp
 	 		MessageBox.Show(" PLAYER 1 LOSE  ");			
 			
 		}
+		
+		public void playFirst(bool first)
+		{
+			if (first)
+			{
+				//say UI   PLAY
+				
+			}
+			
+		}
 	}
+	
 	
 }
 

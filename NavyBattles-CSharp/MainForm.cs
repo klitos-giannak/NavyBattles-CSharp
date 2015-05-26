@@ -35,7 +35,7 @@ namespace NavyBattles_CSharp
 			NetworkController net=new NetworkController();
 			net.joinGame(ipTextBox.Text);
 			
-			GameControler backEnd=new GameControler();
+			GameControler backEnd=new GameControler(net);
 			backEnd.connected();
 			
 		}
@@ -44,8 +44,18 @@ namespace NavyBattles_CSharp
 			NetworkController net=new NetworkController();
 			net.hostGame();
 			
-			GameControler backEnd=new GameControler();
+			GameControler backEnd=new GameControler(net);
 			backEnd.connected();
+			
+			Random random = new Random();
+			int firstPlayer = random.Next(1,3);
+			
+			net.sendOrder(firstPlayer);
+			if(firstPlayer == 1)
+				backEnd.playFirst(true);
+			else
+				backEnd.playFirst(false);
+				
 			
 		}
 		
