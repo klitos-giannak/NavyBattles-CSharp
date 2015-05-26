@@ -72,5 +72,6 @@ namespace NavyBattles_CSharp
 			return JsonConvert.DeserializeObject<Shot>(json);;
 		}
 		
+		
 	}
 }

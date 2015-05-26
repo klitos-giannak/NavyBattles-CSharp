@@ -7,6 +7,9 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 using System;
+using System.Net.Sockets;
+using System.Net;
+using System.Text;
 
 namespace NavyBattles_CSharp
 {
@@ -15,6 +18,11 @@ namespace NavyBattles_CSharp
 	/// </summary>
 	public class NetworkController
 	{
+		private const int PORT=55667;
+		Socket connectedSocket;
+		string msg;
+		
+
 		public NetworkController()
 		{
 			
@@ -27,12 +35,35 @@ namespace NavyBattles_CSharp
 		
 		private void send(string text)
 		{
-			
+			connectedSocket.Send(Encoding.Unicode.GetBytes(msg));
 		}
 		
 		private string receive ()
 		{
-			return null;
+			byte[] bytes=new byte[1024];
+			int receiveBytes=connectedSocket.Receive(bytes);
+			string myReceive=Encoding.Unicode.GetString(bytes,0,receiveBytes);
+			return myReceive;
+			
 		}
+		
+		public void joinGame(string ip)
+		{
+			Socket s=new Socket(AddressFamily.InterNetwork,SocketType.Stream,ProtocolType.Tcp);
+			IPAddress ipAddress=IPAddress.Parse(ip);
+			IPEndPoint ipe= new IPEndPoint(ipAddress ,PORT);
+			s.Connect(ipe);
+		}
+		
+		public void hostGame()
+		{
+			Socket s=new Socket(AddressFamily.InterNetwork,SocketType.Stream,ProtocolType.Tcp);
+			IPEndPoint localendpoint=new IPEndPoint(IPAddress.Any,PORT);
+			s.Bind(localendpoint);
+			s.Listen(10);
+			Console.WriteLine("waiting for connection");
+			connectedSocket=s.Accept();	
+		}
+		
 	}
 }

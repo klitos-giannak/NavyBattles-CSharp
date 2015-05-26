@@ -14,7 +14,10 @@ namespace NavyBattles_CSharp
 		/// Designer variable used to keep track of non-visual components.
 		/// </summary>
 		private System.ComponentModel.IContainer components = null;
-		private System.Windows.Forms.Button startButton;
+		private System.Windows.Forms.Button hostButton;
+		private System.Windows.Forms.Button joinButton;
+		private System.Windows.Forms.TextBox ipTextBox;
+		private System.Windows.Forms.Label label1;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -37,28 +40,61 @@ namespace NavyBattles_CSharp
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.startButton = new System.Windows.Forms.Button();
+			this.hostButton = new System.Windows.Forms.Button();
+			this.joinButton = new System.Windows.Forms.Button();
+			this.ipTextBox = new System.Windows.Forms.TextBox();
+			this.label1 = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
-			// startButton
+			// hostButton
 			// 
-			this.startButton.Location = new System.Drawing.Point(106, 205);
-			this.startButton.Name = "startButton";
-			this.startButton.Size = new System.Drawing.Size(75, 23);
-			this.startButton.TabIndex = 0;
-			this.startButton.Text = "Start Game";
-			this.startButton.UseVisualStyleBackColor = true;
-			this.startButton.Click += new System.EventHandler(this.StartButtonClick);
+			this.hostButton.Location = new System.Drawing.Point(26, 118);
+			this.hostButton.Name = "hostButton";
+			this.hostButton.Size = new System.Drawing.Size(88, 21);
+			this.hostButton.TabIndex = 1;
+			this.hostButton.Text = "Host Game";
+			this.hostButton.UseVisualStyleBackColor = true;
+			this.hostButton.Click += new System.EventHandler(this.HostButtonClick);
+			// 
+			// joinButton
+			// 
+			this.joinButton.Location = new System.Drawing.Point(26, 55);
+			this.joinButton.Name = "joinButton";
+			this.joinButton.Size = new System.Drawing.Size(88, 21);
+			this.joinButton.TabIndex = 2;
+			this.joinButton.Text = "Join Game";
+			this.joinButton.UseVisualStyleBackColor = true;
+			this.joinButton.Click += new System.EventHandler(this.JoinButtonClick);
+			// 
+			// ipTextBox
+			// 
+			this.ipTextBox.Location = new System.Drawing.Point(189, 55);
+			this.ipTextBox.Name = "ipTextBox";
+			this.ipTextBox.Size = new System.Drawing.Size(131, 20);
+			this.ipTextBox.TabIndex = 3;
+			// 
+			// label1
+			// 
+			this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+			this.label1.Location = new System.Drawing.Point(160, 53);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(32, 20);
+			this.label1.TabIndex = 4;
+			this.label1.Text = "IP";
 			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(284, 262);
-			this.Controls.Add(this.startButton);
+			this.ClientSize = new System.Drawing.Size(323, 284);
+			this.Controls.Add(this.label1);
+			this.Controls.Add(this.ipTextBox);
+			this.Controls.Add(this.joinButton);
+			this.Controls.Add(this.hostButton);
 			this.Name = "MainForm";
 			this.Text = "NavyBattles-CSharp";
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 	}

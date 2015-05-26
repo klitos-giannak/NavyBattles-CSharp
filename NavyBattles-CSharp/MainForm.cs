@@ -7,10 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 using System;
-using System.Collections.Generic;
-using System.Drawing;
 using System.Windows.Forms;
-using Newtonsoft.Json;
 
 namespace NavyBattles_CSharp
 {
@@ -30,10 +27,27 @@ namespace NavyBattles_CSharp
 			// TODO: Add constructor code after the InitializeComponent() call.
 			//
 		}
-		void StartButtonClick(object sender, EventArgs e)
+		
+
+		
+		void JoinButtonClick(object sender, EventArgs e)
 		{
+			NetworkController net=new NetworkController();
+			net.joinGame(ipTextBox.Text);
+			
 			GameControler backEnd=new GameControler();
 			backEnd.connected();
+			
 		}
+		void HostButtonClick(object sender, EventArgs e)
+		{
+			NetworkController net=new NetworkController();
+			net.hostGame();
+			
+			GameControler backEnd=new GameControler();
+			backEnd.connected();
+			
+		}
+		
 	}
 }
