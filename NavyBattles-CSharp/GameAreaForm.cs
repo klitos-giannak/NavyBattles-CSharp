@@ -54,10 +54,8 @@ namespace NavyBattles_CSharp
 					int gridx=myBoard.convertWindowToGridXCoordinate(loc.X-myBoard.Location.X);
 					int gridy=myBoard.convertWindowToGridYCoordinate(loc.Y-myBoard.Location.Y);
 					MessageBox.Show(gridx + "\n" + gridy);
-				}
-					 
 					
-					
+				}	
 			}
 			location=Point.Empty;
 			
