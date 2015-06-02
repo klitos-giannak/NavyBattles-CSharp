@@ -143,10 +143,15 @@ namespace NavyBattles_CSharp
 			{
 				//say UI   PLAY
 				
-			}
+			}	
 			
 		}
+		
+		
+		
 	}
+	
+	
 	
 	
 }

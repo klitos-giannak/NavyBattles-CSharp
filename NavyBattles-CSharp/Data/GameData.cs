@@ -72,6 +72,19 @@ namespace NavyBattles_CSharp.Data
 		
 		
 		
+		public bool initShip(int size, Direction direction, Coords firstBlock)
+		{
+			if( (direction==Direction.HORIZONTAL && firstBlock.X + size < myGrid.GetLength(0))
+			     ||  (direction==Direction.VERTICAL && firstBlock.Y + size < myGrid.GetLength(1)) )
+			
+			{				
+			   		fleet.initShip(size, direction, firstBlock);
+			   		return true;	
+			}
+			
+			return false;
+			
+		}
 		
 		
 	}
