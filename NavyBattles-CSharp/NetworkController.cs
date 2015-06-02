@@ -10,6 +10,7 @@ using System;
 using System.Net.Sockets;
 using System.Net;
 using System.Text;
+using System.Windows.Forms;
 
 namespace NavyBattles_CSharp
 {
@@ -40,6 +41,8 @@ namespace NavyBattles_CSharp
 		public void receiveOrder()
 		{
 			int order = Convert.ToInt32(receive());
+			if(order == 1)
+				order = 2;
 			setOrderToBackend(order);
 		}
 		
@@ -91,10 +94,10 @@ namespace NavyBattles_CSharp
 		
 		public void joinGame(string ip)
 		{
-			Socket s=new Socket(AddressFamily.InterNetwork,SocketType.Stream,ProtocolType.Tcp);
+			connectedSocket=new Socket(AddressFamily.InterNetwork,SocketType.Stream,ProtocolType.Tcp);
 			IPAddress ipAddress=IPAddress.Parse(ip);
 			IPEndPoint ipe= new IPEndPoint(ipAddress ,PORT);
-			s.Connect(ipe);
+			connectedSocket.Connect(ipe);
 		}
 		
 		public void hostGame()
@@ -103,7 +106,6 @@ namespace NavyBattles_CSharp
 			IPEndPoint localendpoint=new IPEndPoint(IPAddress.Any,PORT);
 			s.Bind(localendpoint);
 			s.Listen(10);
-			Console.WriteLine("waiting for connection");
 			connectedSocket=s.Accept();	
 		}
 		
