@@ -19,9 +19,12 @@ namespace NavyBattles_CSharp
 	public class NetworkController
 	{
 		private const int PORT=55667;
-		Socket connectedSocket;
-		string msg;
+		private Socket connectedSocket;
+		private GameControler backend;
 		
+		public GameControler Backend{
+			set{ backend = value; }
+		}
 
 		public NetworkController()
 		{
@@ -30,7 +33,21 @@ namespace NavyBattles_CSharp
 		
 		public void sendOrder(int order)
 		{
-			//TO DO send to party the play order
+			send(order.ToString());
+			setOrderToBackend(order);
+		}
+		
+		public void receiveOrder()
+		{
+			int order = Convert.ToInt32(receive());
+			setOrderToBackend(order);
+		}
+		
+		private void setOrderToBackend(int order){
+			if(order == 1)
+				backend.playFirst(true);
+			else
+				backend.playFirst(false);
 		}
 		
 		public void sendShot(Shot shot)
@@ -40,7 +57,7 @@ namespace NavyBattles_CSharp
 		
 		private void send(string text)
 		{
-			connectedSocket.Send(Encoding.Unicode.GetBytes(msg));
+			connectedSocket.Send(Encoding.Unicode.GetBytes(text));
 		}
 		
 		private string receive ()

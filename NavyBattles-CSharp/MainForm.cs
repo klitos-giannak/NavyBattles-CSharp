@@ -40,7 +40,10 @@ namespace NavyBattles_CSharp
 			net.joinGame(ipTextBox.Text);
 			
 			backEnd=new GameControler(net);
+			net.Backend = backEnd;
 			backEnd.connected();
+			
+			net.receiveOrder();
 			
 		}
 		void HostButtonClick(object sender, EventArgs e)
@@ -48,17 +51,13 @@ namespace NavyBattles_CSharp
 			net.hostGame();
 			
 			backEnd=new GameControler(net);
+			net.Backend = backEnd;
 			backEnd.connected();
 			
 			Random random = new Random();
 			int firstPlayer = random.Next(1,3);
 			
-			net.sendOrder(firstPlayer);
-			if(firstPlayer == 1)
-				backEnd.playFirst(true);
-			else
-				backEnd.playFirst(false);
-				
+			net.sendOrder(firstPlayer);				
 			
 		}
 		
