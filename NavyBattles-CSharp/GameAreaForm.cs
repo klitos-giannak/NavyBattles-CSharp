@@ -9,6 +9,7 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
+using NavyBattles_CSharp.Data;
 
 namespace NavyBattles_CSharp
 {
@@ -53,8 +54,11 @@ namespace NavyBattles_CSharp
 				{
 					int gridx=myBoard.convertWindowToGridXCoordinate(loc.X-myBoard.Location.X);
 					int gridy=myBoard.convertWindowToGridYCoordinate(loc.Y-myBoard.Location.Y);
-					MessageBox.Show(gridx + "\n" + gridy);
+//					MessageBox.Show(gridx + "\n" + gridy);
 					
+					Coords blockCoords = myBoard.getGridCoords(gridx, gridy);
+					Point newLocation = new Point(blockCoords.X + myBoard.Location.X, blockCoords.Y + myBoard.Location.Y);
+					ship.Location = newLocation;
 				}	
 			}
 			location=Point.Empty;

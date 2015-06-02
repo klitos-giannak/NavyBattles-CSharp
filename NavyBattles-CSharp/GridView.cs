@@ -69,5 +69,14 @@ namespace NavyBattles_CSharp
 			else
 				return (int)gridY;
 		}
+		
+		public Coords getGridCoords(int gridx,int gridy)
+		{
+			int pointX = 30 + cellWidth*gridx;
+			int pointY = 30 + cellHeight*gridy;
+			
+			
+			return new Coords( pointX, pointY);
+		}
 	}
 }
