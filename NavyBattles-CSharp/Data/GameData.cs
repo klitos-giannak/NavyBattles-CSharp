@@ -74,8 +74,9 @@ namespace NavyBattles_CSharp.Data
 		
 		public bool initShip(int size, Direction direction, Coords firstBlock)
 		{
-			if( (direction==Direction.HORIZONTAL && firstBlock.X + size < myGrid.GetLength(0))
+			if( ( (direction==Direction.HORIZONTAL && firstBlock.X + size < myGrid.GetLength(0))
 			     ||  (direction==Direction.VERTICAL && firstBlock.Y + size < myGrid.GetLength(1)) )
+			     && areBlocksFree(size,direction,firstBlock) )
 			
 			{				
 			   		fleet.initShip(size, direction, firstBlock);
@@ -87,6 +88,22 @@ namespace NavyBattles_CSharp.Data
 		}
 		
 		
+		private bool areBlocksFree(int size, Direction direction, Coords firstBlock)
+		{
+			for (int i=0 ; i<size ; i++)
+			{
+				if(direction==Direction.VERTICAL)
+				{
+					if(fleet.isBlockOccupied(new Coords(firstBlock.X,firstBlock.Y+i)))
+						return false;
+				}
+				else					
+				{
+					if(fleet.isBlockOccupied(new Coords(firstBlock.X+i,firstBlock.Y)));
+				}
+			}
+			return true;
+		}
 	}
 	 
 	

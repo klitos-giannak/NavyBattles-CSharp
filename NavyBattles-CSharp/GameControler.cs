@@ -145,7 +145,8 @@ namespace NavyBattles_CSharp
 		{
 			if (first)
 			{
-				//say UI   PLAY
+				//say UI   PLAY otan ta ploia einai topothetimena na ksekinaeito game
+				
 				
 			}	
 			
