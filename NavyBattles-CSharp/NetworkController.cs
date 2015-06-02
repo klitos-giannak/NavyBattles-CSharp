@@ -70,5 +70,21 @@ namespace NavyBattles_CSharp
 			connectedSocket=s.Accept();	
 		}
 		
+		public string getLocalIPAdress()
+		{
+   			IPHostEntry host;
+   			string localIP = "";
+			host = Dns.GetHostEntry(Dns.GetHostName());
+  			foreach (IPAddress ip in host.AddressList)
+ 	  		{
+	    		if (ip.AddressFamily == AddressFamily.InterNetwork)
+		     	{
+	      			localIP = ip.ToString();
+       				break;
+     			}
+   			}
+   			return localIP;
+   			
+ 		}
 	}
 }

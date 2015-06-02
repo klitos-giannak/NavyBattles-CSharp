@@ -16,6 +16,9 @@ namespace NavyBattles_CSharp
 	/// </summary>
 	public partial class MainForm : Form
 	{
+		private NetworkController net;
+		private GameControler backEnd;
+		
 		public MainForm()
 		{
 			//
@@ -23,6 +26,8 @@ namespace NavyBattles_CSharp
 			//
 			InitializeComponent();
 			
+			net=new NetworkController();
+			hostIP.Text = net.getLocalIPAdress();
 			//
 			// TODO: Add constructor code after the InitializeComponent() call.
 			//
@@ -32,19 +37,17 @@ namespace NavyBattles_CSharp
 		
 		void JoinButtonClick(object sender, EventArgs e)
 		{
-			NetworkController net=new NetworkController();
 			net.joinGame(ipTextBox.Text);
 			
-			GameControler backEnd=new GameControler(net);
+			backEnd=new GameControler(net);
 			backEnd.connected();
 			
 		}
 		void HostButtonClick(object sender, EventArgs e)
 		{
-			NetworkController net=new NetworkController();
 			net.hostGame();
 			
-			GameControler backEnd=new GameControler(net);
+			backEnd=new GameControler(net);
 			backEnd.connected();
 			
 			Random random = new Random();

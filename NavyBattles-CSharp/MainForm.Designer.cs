@@ -112,7 +112,7 @@ namespace NavyBattles_CSharp
 			// 
 			this.hostIP.BackColor = System.Drawing.Color.Transparent;
 			this.hostIP.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-			this.hostIP.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+			this.hostIP.ForeColor = System.Drawing.Color.PowderBlue;
 			this.hostIP.Location = new System.Drawing.Point(671, 32);
 			this.hostIP.Name = "hostIP";
 			this.hostIP.Size = new System.Drawing.Size(151, 20);
