@@ -46,13 +46,33 @@ namespace NavyBattles_CSharp
 		private void setOrderToBackend(int order){
 			if(order == 1)
 				backend.playFirst(true);
-			else
+			else {
 				backend.playFirst(false);
+				receiveShot();
+			}
 		}
 		
 		public void sendShot(Shot shot)
 		{
 			send(shot.toJson());
+			receiveConfirmation();
+		}
+		
+		private void receiveShot(){
+			Shot shot = Shot.jsonToShot(receive());
+			shot = backend.enemyFired(shot);
+			sendConfirmation(shot);
+		}
+		
+		public void sendConfirmation(Shot shot)
+		{
+			send(shot.toJson());
+		}
+		
+		public void receiveConfirmation(){
+			Shot shot = Shot.jsonToShot(receive());
+			if(backend.shotResult(shot))
+				receiveShot();
 		}
 		
 		private void send(string text)

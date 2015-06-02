@@ -94,10 +94,11 @@ namespace NavyBattles_CSharp
 		/// </summary>
 		/// <param name="shot"></param>
 		
-		public void shotResult(Shot shot)
+		public bool shotResult(Shot shot)
 		{
 			if(shot.Confirmed == false)
-				return;
+				//this is an error handling and the false means that the game is over
+				return false;
 							
 				
 			if(shot.Hit)
@@ -113,6 +114,9 @@ namespace NavyBattles_CSharp
 			}
 			
 			gameForm.Invalidate();
+			
+			//TO DO: return false if game is over, otherwise true so the network can wait for another shot
+			return false;
 		}
 		public void checkWin()
 		{
