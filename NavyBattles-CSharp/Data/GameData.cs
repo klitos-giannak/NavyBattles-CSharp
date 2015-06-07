@@ -99,7 +99,8 @@ namespace NavyBattles_CSharp.Data
 				}
 				else					
 				{
-					if(fleet.isBlockOccupied(new Coords(firstBlock.X+i,firstBlock.Y)));
+					if(fleet.isBlockOccupied(new Coords(firstBlock.X+i,firstBlock.Y)))
+						return false;
 				}
 			}
 			return true;

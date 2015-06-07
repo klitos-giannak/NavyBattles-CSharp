@@ -45,7 +45,9 @@ namespace NavyBattles_CSharp.Data
 			return false;
 		}
 		
-		
+		public override int GetHashCode(){
+			return base.GetHashCode();
+		}
 	}
 	public enum Direction
 	{
