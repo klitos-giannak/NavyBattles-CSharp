@@ -11,6 +11,7 @@ using System.Net.Sockets;
 using System.Net;
 using System.Text;
 using System.Windows.Forms;
+using AsyncSocketServer;
 
 namespace NavyBattles_CSharp
 {
@@ -31,6 +32,17 @@ namespace NavyBattles_CSharp
 		{
 			
 		}
+				
+		public void sendShot(Shot shot)
+		{
+			send(shot.toJson());
+			receiveConfirmation();
+		}
+				
+		public void sendConfirmation(Shot shot)
+		{
+			send(shot.toJson());
+		}
 		
 		public void sendOrder(int order)
 		{
@@ -38,59 +50,147 @@ namespace NavyBattles_CSharp
 			setOrderToBackend(order);
 		}
 		
-		public void receiveOrder()
-		{
-			int order = Convert.ToInt32(receive());
-			if(order == 1)
-				order = 2;
-			setOrderToBackend(order);
-		}
-		
 		private void setOrderToBackend(int order){
-			if(order == 1)
+			if(order == 1){
 				backend.playFirst(true);
-			else {
+			} else {
 				backend.playFirst(false);
 				receiveShot();
 			}
 		}
 		
-		public void sendShot(Shot shot)
+		public void receiveOrder()
 		{
-			send(shot.toJson());
-			receiveConfirmation();
+			StateObject state = new StateObject();
+	        state.workSocket = connectedSocket;
+	        connectedSocket.BeginReceive(state.buffer, 0, StateObject.BufferSize, 0,
+		                new AsyncCallback(ReadOrderCallback), state);
 		}
 		
 		private void receiveShot(){
-			Shot shot = Shot.jsonToShot(receive());
-			shot = backend.enemyFired(shot);
-			sendConfirmation(shot);
+			StateObject state = new StateObject();
+	        state.workSocket = connectedSocket;
+	        connectedSocket.BeginReceive(state.buffer, 0, StateObject.BufferSize, 0,
+		                new AsyncCallback(ReadShotCallback), state);
 		}
-		
-		public void sendConfirmation(Shot shot)
+
+		public void receiveConfirmation()
 		{
-			send(shot.toJson());
+			StateObject state = new StateObject();
+	        state.workSocket = connectedSocket;
+	        connectedSocket.BeginReceive(state.buffer, 0, StateObject.BufferSize, 0,
+		                new AsyncCallback(ReadConfirmationCallback), state);
 		}
 		
-		public void receiveConfirmation(){
-			Shot shot = Shot.jsonToShot(receive());
-			if(backend.shotResult(shot))
-				receiveShot();
-		}
+		private void send(String text) {
+	        // Convert the string data to byte data using ASCII encoding.
+	        byte[] byteData = Encoding.Unicode.GetBytes(text);
+	
+	        // Begin sending the data to the remote device.
+	        connectedSocket.BeginSend(byteData, 0, byteData.Length, 0,
+	            new AsyncCallback(SendCallback), connectedSocket);
+	    }
+	
+	    private void SendCallback(IAsyncResult ar) {
+			// Retrieve the socket from the state object.
+	        Socket handler = (Socket) ar.AsyncState;
+	        
+	        try {
+	            // Complete sending the data to the remote device.
+	            int bytesSent = handler.EndSend(ar);	
+	        } catch (Exception e) {
+	            MessageBox.Show(e.ToString());
+	        	handler.Shutdown(SocketShutdown.Both);
+	            handler.Close();
+	        }
+	    }
 		
-		private void send(string text)
-		{
-			connectedSocket.Send(Encoding.Unicode.GetBytes(text));
-		}
+		private void ReadShotCallback(IAsyncResult ar) {
+	        String content = String.Empty;
+	        
+	        // Retrieve the state object and the handler socket
+	        // from the asynchronous state object.
+	        StateObject state = (StateObject) ar.AsyncState;
+	        Socket handler = state.workSocket;
+	
+	        try {
+		        // Read data from the client socket. 
+		        int bytesRead = handler.EndReceive(ar);
 		
-		private string receive ()
-		{
-			byte[] bytes=new byte[1024];
-			int receiveBytes=connectedSocket.Receive(bytes);
-			string myReceive=Encoding.Unicode.GetString(bytes,0,receiveBytes);
-			return myReceive;
-			
-		}
+		        if (bytesRead > 0) {
+		            // There  might be more data, so store the data received so far.
+		            state.sb.Append(Encoding.Unicode.GetString(
+		                state.buffer,0,bytesRead));
+		
+		            // Check for end-of-file tag. If it is not there, read 
+		            // more data.
+		            content = state.sb.ToString();
+		            
+		            // Convert the receivedData to a shot
+					Shot shot = Shot.jsonToShot(content);
+					shot = backend.enemyFired(shot);
+					sendConfirmation(shot);
+		        }
+		        
+	        } catch (SocketException e){
+	            MessageBox.Show(e.ToString());
+	        	handler.Shutdown(SocketShutdown.Both);
+	            handler.Close();
+	        }
+	    }
+		
+		private void ReadOrderCallback(IAsyncResult ar) {
+	        String content = String.Empty;
+	        
+	        StateObject state = (StateObject) ar.AsyncState;
+	        Socket handler = state.workSocket;
+	
+	        try {
+		        int bytesRead = handler.EndReceive(ar);
+		
+		        if (bytesRead > 0) {
+		            state.sb.Append(Encoding.Unicode.GetString(state.buffer,0,bytesRead));
+		            content = state.sb.ToString();
+		            
+		            // Read and set the order
+					int order = Convert.ToInt32(content);
+					if(order == 1)
+						order = 2;
+					setOrderToBackend(order);
+		        }
+		        
+	        } catch (SocketException e){
+	            MessageBox.Show(e.ToString());
+	        	handler.Shutdown(SocketShutdown.Both);
+	            handler.Close();
+	        }
+	    }
+		
+		public void ReadConfirmationCallback(IAsyncResult ar) {
+	        String content = String.Empty;
+	        
+	        StateObject state = (StateObject) ar.AsyncState;
+	        Socket handler = state.workSocket;
+	
+	        try {
+		        int bytesRead = handler.EndReceive(ar);
+		
+		        if (bytesRead > 0) {
+		            state.sb.Append(Encoding.Unicode.GetString(state.buffer,0,bytesRead));
+		            content = state.sb.ToString();
+		            
+		            // Read the confirmation
+					Shot shot = Shot.jsonToShot(content);
+					if(backend.shotResult(shot))
+						receiveShot();
+		        }
+		        
+	        } catch (SocketException e){
+	            MessageBox.Show(e.ToString());
+	        	handler.Shutdown(SocketShutdown.Both);
+	            handler.Close();
+	        }
+	    }
 		
 		public void joinGame(string ip)
 		{
