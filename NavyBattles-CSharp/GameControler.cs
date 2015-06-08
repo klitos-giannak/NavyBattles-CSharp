@@ -23,6 +23,8 @@ namespace NavyBattles_CSharp
 		private GameAreaForm gameForm;
 		private bool meReady;
 		private bool otherReady;
+		private bool firstPlayer;
+		
 		
 		
 		public GameControler(NetworkController network)
@@ -36,6 +38,10 @@ namespace NavyBattles_CSharp
 		
 		private void startGame()
 		{
+			if(firstPlayer) 
+			{
+				gameForm.enablePlay(true);
+			}
 		}
 		
 		public void connected()
@@ -84,7 +90,7 @@ namespace NavyBattles_CSharp
 		public void shoot(Coords coords) // tin kalei to UI otan paizei o paikths
 		{
 			Shot shot = new Shot(coords);
-			//stelnoume to shot sto network k tous afhnoume na kanoun ta dika tous.
+			net.sendShot(shot);
 			
 		}
 		
@@ -115,10 +121,8 @@ namespace NavyBattles_CSharp
 			
 			gameForm.Invalidate();
 			
-			//TO DO: return false if game is over, otherwise true so the network can wait for another shot
-			return false;
 		}
-		public void checkWin()
+		public bool checkWin()
 		{
 			int myHitCounter=0;
 			int enemyHitCounter=0;
@@ -134,11 +138,15 @@ namespace NavyBattles_CSharp
 			}
 			
 			if(enemyHitCounter==GameData.MAXHITS)
-			MessageBox.Show(" PLAYER 2 LOSE");
-			
-	 		if(myHitCounter==GameData.MAXHITS)
-	 		MessageBox.Show(" PLAYER 1 LOSE  ");			
-			
+			{
+				MessageBox.Show(" YOU WIN ");
+			}
+	 		else if(myHitCounter==GameData.MAXHITS)
+	 		{
+	 			MessageBox.Show(" YOU LOSE  ");	
+	 		}
+	 		else 
+	 		
 		}
 		
 		public void playFirst(bool first)

@@ -82,5 +82,10 @@ namespace NavyBattles_CSharp
 				ship.Invalidate();
 			}
 		}
+		
+		public void enablePlay(bool play)
+		{
+			// enable or disable play
+		}
 	}
 }
