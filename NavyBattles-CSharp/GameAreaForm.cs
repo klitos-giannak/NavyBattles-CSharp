@@ -19,13 +19,14 @@ namespace NavyBattles_CSharp
 	public partial class GameAreaForm : Form
 	{
 		private Point location;
-		public GameAreaForm()
+		private GameControler gameControler;
+		public GameAreaForm(GameControler gameControler)
 		{
 			//
 			// The InitializeComponent() call is required for Windows Forms designer support.
 			//
 			InitializeComponent();
-			
+			this.gameControler=gameControler;
 			//
 			// TODO: Add constructor code after the InitializeComponent() call.
 			//
@@ -86,6 +87,25 @@ namespace NavyBattles_CSharp
 		public void enablePlay(bool play)
 		{
 			// enable or disable play
+		}
+		
+		void StartGameButtonClick(object sender, EventArgs e)
+		{
+			if(allShipsLocated())
+			{
+				gameControler.iAmReady();
+				startGameButton.Hide();
+			}
+			else 
+			{
+				MessageBox.Show("RE ANTE TOPOTHETHSE TA PLOIA");
+			}
+			
+		}
+		private bool allShipsLocated()
+		{
+			//check if all ships are located to the grid
+			return true;
 		}
 	}
 }

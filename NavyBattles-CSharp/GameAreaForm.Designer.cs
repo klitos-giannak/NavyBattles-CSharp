@@ -87,6 +87,7 @@ namespace NavyBattles_CSharp
 			this.ship3 = new System.Windows.Forms.PictureBox();
 			this.ship4 = new System.Windows.Forms.PictureBox();
 			this.ship5 = new System.Windows.Forms.PictureBox();
+			this.startGameButton = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.ship1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.ship2)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.ship3)).BeginInit();
@@ -620,6 +621,16 @@ namespace NavyBattles_CSharp
 			this.ship5.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ShipMouseMove);
 			this.ship5.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ShipMouseUp);
 			// 
+			// startGameButton
+			// 
+			this.startGameButton.Location = new System.Drawing.Point(537, 494);
+			this.startGameButton.Name = "startGameButton";
+			this.startGameButton.Size = new System.Drawing.Size(107, 61);
+			this.startGameButton.TabIndex = 47;
+			this.startGameButton.Text = "Start";
+			this.startGameButton.UseVisualStyleBackColor = true;
+			this.startGameButton.Click += new System.EventHandler(this.StartGameButtonClick);
+			// 
 			// GameAreaForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -627,6 +638,7 @@ namespace NavyBattles_CSharp
 			this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
 			this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
 			this.ClientSize = new System.Drawing.Size(968, 640);
+			this.Controls.Add(this.startGameButton);
 			this.Controls.Add(this.ship5);
 			this.Controls.Add(this.ship4);
 			this.Controls.Add(this.ship3);
@@ -729,5 +741,6 @@ namespace NavyBattles_CSharp
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.PictureBox ship1;
+		private System.Windows.Forms.Button startGameButton;
 	}
 }

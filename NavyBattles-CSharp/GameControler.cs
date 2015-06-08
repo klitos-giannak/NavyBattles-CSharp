@@ -31,7 +31,7 @@ namespace NavyBattles_CSharp
 		{
 			net = network;
 			data=new GameData();
-			gameForm=new GameAreaForm();
+			gameForm=new GameAreaForm(this);
 			meReady=false;
 			otherReady=false;
 		}
@@ -121,6 +121,7 @@ namespace NavyBattles_CSharp
 			
 			gameForm.Invalidate();
 			
+			return !checkWin();
 		}
 		public bool checkWin()
 		{
@@ -140,12 +141,15 @@ namespace NavyBattles_CSharp
 			if(enemyHitCounter==GameData.MAXHITS)
 			{
 				MessageBox.Show(" YOU WIN ");
+				return true;
 			}
 	 		else if(myHitCounter==GameData.MAXHITS)
 	 		{
 	 			MessageBox.Show(" YOU LOSE  ");	
+	 			return true;
 	 		}
 	 		else 
+	 			return false;
 	 		
 		}
 		
