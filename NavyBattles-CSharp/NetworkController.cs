@@ -53,6 +53,9 @@ namespace NavyBattles_CSharp
 		private void setOrderToBackend(int order){
 			if(order == 1){
 				backend.playFirst(true);
+				
+				// send a draft shot to test network
+//				sendShot(new Shot(new NavyBattles_CSharp.Data.Coords(5,6))); 
 			} else {
 				backend.playFirst(false);
 				receiveShot();
@@ -126,6 +129,7 @@ namespace NavyBattles_CSharp
 		            // more data.
 		            content = state.sb.ToString();
 		            
+//		            MessageBox.Show(content);
 		            // Convert the receivedData to a shot
 					Shot shot = Shot.jsonToShot(content);
 					shot = backend.enemyFired(shot);
@@ -156,6 +160,8 @@ namespace NavyBattles_CSharp
 					int order = Convert.ToInt32(content);
 					if(order == 1)
 						order = 2;
+					else
+						order = 1;
 					setOrderToBackend(order);
 		        }
 		        
@@ -179,6 +185,7 @@ namespace NavyBattles_CSharp
 		            state.sb.Append(Encoding.Unicode.GetString(state.buffer,0,bytesRead));
 		            content = state.sb.ToString();
 		            
+//		            MessageBox.Show(content);
 		            // Read the confirmation
 					Shot shot = Shot.jsonToShot(content);
 					if(backend.shotResult(shot))
