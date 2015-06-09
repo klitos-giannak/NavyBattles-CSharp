@@ -76,9 +76,12 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+    <None Include="Resources\bombed.png" />
+    <None Include="Resources\missed.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data" />
+    <Folder Include="Resources" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="MainForm.resx">
