@@ -130,7 +130,7 @@ namespace NavyBattles_CSharp
 		public void endOrPlay()
 		{
 			if(!checkEndGame())
-				gameForm.enablePlay();
+				gameForm.enablePlay(true);
 			
 		}
 		
