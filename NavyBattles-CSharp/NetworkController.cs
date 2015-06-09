@@ -63,8 +63,9 @@ namespace NavyBattles_CSharp
 //				sendShot(new Shot(new NavyBattles_CSharp.Data.Coords(5,6))); 
 			} else {
 				backend.playFirst(false);
-				receiveShot();
+				
 			}
+			receiveStatusIamReady();
 		}
 		
 		public void receiveOrder()
@@ -75,7 +76,7 @@ namespace NavyBattles_CSharp
 		                new AsyncCallback(ReadOrderCallback), state);
 		}
 		
-		private void receiveShot(){
+		public void receiveShot(){
 			StateObject state = new StateObject();
 	        state.workSocket = connectedSocket;
 	        connectedSocket.BeginReceive(state.buffer, 0, StateObject.BufferSize, 0,
@@ -147,6 +148,7 @@ namespace NavyBattles_CSharp
 					Shot shot = Shot.jsonToShot(content);
 					shot = backend.enemyFired(shot);
 					sendConfirmation(shot);
+					backend.endOrPlay();
 		        }
 		        
 	        } catch (SocketException e){

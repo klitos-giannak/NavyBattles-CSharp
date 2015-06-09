@@ -42,6 +42,10 @@ namespace NavyBattles_CSharp
 			{
 				gameForm.enablePlay(true);
 			}
+			else
+			{
+				net.receiveShot();
+			}
 		}
 		
 		public void connected()
@@ -60,10 +64,9 @@ namespace NavyBattles_CSharp
 		public void iAmReady() //thn kalei to UI
 		{
 			meReady=true;
-			//kalw to iAmReady tou network
+			net.sendStatusIAmReady();
 			if(otherReady)				
-				startGame();			
-			
+				startGame();				
 		}
 		
 		public Shot enemyFired(Shot shot)
@@ -121,9 +124,17 @@ namespace NavyBattles_CSharp
 			
 			gameForm.Invalidate();
 			
-			return !checkWin();
+			return !checkEndGame();
 		}
-		public bool checkWin()
+		
+		public void endOrPlay()
+		{
+			if(!checkEndGame())
+				gameForm.enablePlay();
+			
+		}
+		
+		private bool checkEndGame()
 		{
 			int myHitCounter=0;
 			int enemyHitCounter=0;
