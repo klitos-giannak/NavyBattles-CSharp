@@ -43,6 +43,11 @@ namespace NavyBattles_CSharp
 		{
 			send(shot.toJson());
 		}
+				
+		public void sendStatusIAmReady()
+		{
+			send("OK");
+		}
 		
 		public void sendOrder(int order)
 		{
@@ -83,6 +88,14 @@ namespace NavyBattles_CSharp
 	        state.workSocket = connectedSocket;
 	        connectedSocket.BeginReceive(state.buffer, 0, StateObject.BufferSize, 0,
 		                new AsyncCallback(ReadConfirmationCallback), state);
+		}
+		
+		public void receiveStatusIamReady()
+		{
+			StateObject state = new StateObject();
+	        state.workSocket = connectedSocket;
+	        connectedSocket.BeginReceive(state.buffer, 0, StateObject.BufferSize, 0,
+		                new AsyncCallback(ReadReadyStatusCallback), state);
 		}
 		
 		private void send(String text) {
@@ -190,6 +203,33 @@ namespace NavyBattles_CSharp
 					Shot shot = Shot.jsonToShot(content);
 					if(backend.shotResult(shot))
 						receiveShot();
+		        }
+		        
+	        } catch (SocketException e){
+	            MessageBox.Show(e.ToString());
+	        	handler.Shutdown(SocketShutdown.Both);
+	            handler.Close();
+	        }
+	    }
+		
+		private void ReadReadyStatusCallback(IAsyncResult ar) {
+	        String content = String.Empty;
+	        
+	        StateObject state = (StateObject) ar.AsyncState;
+	        Socket handler = state.workSocket;
+	
+	        try {
+		        int bytesRead = handler.EndReceive(ar);
+		
+		        if (bytesRead > 0) {
+		            state.sb.Append(Encoding.Unicode.GetString(state.buffer,0,bytesRead));
+		            content = state.sb.ToString();
+		            
+		            // Read the ready status message
+		            if(content.Equals("OK"))
+		            	backend.enemyReady();
+		            else
+		            	throw new SocketException();
 		        }
 		        
 	        } catch (SocketException e){
