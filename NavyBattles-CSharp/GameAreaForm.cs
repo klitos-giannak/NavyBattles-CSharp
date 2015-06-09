@@ -8,6 +8,9 @@
  */
 using System;
 using System.Drawing;
+using System.IO;
+using System.Reflection;
+using System.Resources;
 using System.Windows.Forms;
 using NavyBattles_CSharp.Data;
 
@@ -21,6 +24,9 @@ namespace NavyBattles_CSharp
 		private Point location;
 		private GameControler gameControler;
 		private GameData data;
+		private PictureBox[,] myBombs;
+		private PictureBox[,] enemyBombs;
+		
 		public GameAreaForm(GameControler gameControler,GameData data)
 		{
 			//
@@ -29,9 +35,29 @@ namespace NavyBattles_CSharp
 			InitializeComponent();
 			this.gameControler=gameControler;
 			this.data=data;
-			//
-			// TODO: Add constructor code after the InitializeComponent() call.
-			//
+
+			myBombs = new PictureBox[myBoard.getGridSize(),myBoard.getGridSize()];
+			enemyBombs = new PictureBox[enemyBoard.getGridSize(),enemyBoard.getGridSize()];
+			
+			for(int i=0 ; i<myBoard.getGridSize() ; i++)
+			{
+				for(int  j=0 ; j<myBoard.getGridSize() ; j++)
+				{
+					myBombs[i,j] = new PictureBox();
+					Coords coords = myBoard.getGridCoords(i,j);
+					myBombs[i,j].Location = new Point(coords.X+myBoard.Location.X, coords.Y+myBoard.Location.Y);
+					this.Controls.Add(myBombs[i,j]);
+					
+					enemyBombs[i,j] = new PictureBox();
+					coords = enemyBoard.getGridCoords(i,j);
+					enemyBombs[i,j].Location = new Point(coords.X+enemyBoard.Location.X, coords.Y+enemyBoard.Location.Y);
+					this.Controls.Add(enemyBombs[i,j]);
+				}
+			}
+			
+			data.setMyBoxState(5,5, GameData.BoxState.BOMBED);
+			data.setEnemyBoxState(7,7, GameData.BoxState.MISSED);
+					
 		}
 		
 		void ShipMouseMove(object sender, MouseEventArgs e)
@@ -113,26 +139,27 @@ namespace NavyBattles_CSharp
 		protected override void OnPaint(PaintEventArgs e)
 		{
 			base.OnPaint(e);
+//			ResourceManager resources = new ResourceManager("NavyBattles-CSharp.Resource1.resx", Assembly.GetExecutingAssembly());
 			for(int i=0 ; i<myBoard.getGridSize() ; i++)
 			{
 				for(int  j=0 ; j<myBoard.getGridSize() ; j++)
 				{
 					if(data.getMyBoxState(i,j)==GameData.BoxState.BOMBED)
 					{
-						
+//						myBombs[i,j].Image = (Bitmap)resources.GetObject("bombed.png");
 					}
 					else if(data.getMyBoxState(i,j)==GameData.BoxState.MISSED)
 					{
-						
+//						myBombs[i,j].Image = (Bitmap)resources.GetObject("missed.png");
 					}
 					
 					if(data.getEnemyBoxState(i,j)==GameData.BoxState.BOMBED)
 					{
-						
+//						enemyBombs[i,j].Image = (Bitmap)resources.GetObject("bombed.png");
 					}
 					else if(data.getEnemyBoxState(i,j)==GameData.BoxState.MISSED)
 					{
-						
+//						enemyBombs[i,j].Image = (Bitmap)resources.GetObject("missed.png");
 					}
 				}
 			}

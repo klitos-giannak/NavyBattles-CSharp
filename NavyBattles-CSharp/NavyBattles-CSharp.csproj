@@ -90,6 +90,7 @@
     <EmbeddedResource Include="GameAreaForm.resx">
       <DependentUpon>GameAreaForm.Designer.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resource1.resx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
