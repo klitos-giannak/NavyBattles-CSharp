@@ -560,9 +560,9 @@ namespace NavyBattles_CSharp
 			// 
 			this.ship1.BackColor = System.Drawing.Color.Transparent;
 			this.ship1.Image = ((System.Drawing.Image)(resources.GetObject("ship1.Image")));
-			this.ship1.Location = new System.Drawing.Point(48, 494);
+			this.ship1.Location = new System.Drawing.Point(28, 494);
 			this.ship1.Name = "ship1";
-			this.ship1.Size = new System.Drawing.Size(73, 37);
+			this.ship1.Size = new System.Drawing.Size(77, 37);
 			this.ship1.TabIndex = 42;
 			this.ship1.TabStop = false;
 			this.ship1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ShipMouseDown);
@@ -573,9 +573,9 @@ namespace NavyBattles_CSharp
 			// 
 			this.ship2.BackColor = System.Drawing.Color.Transparent;
 			this.ship2.Image = ((System.Drawing.Image)(resources.GetObject("ship2.Image")));
-			this.ship2.Location = new System.Drawing.Point(147, 494);
+			this.ship2.Location = new System.Drawing.Point(131, 491);
 			this.ship2.Name = "ship2";
-			this.ship2.Size = new System.Drawing.Size(112, 37);
+			this.ship2.Size = new System.Drawing.Size(121, 37);
 			this.ship2.TabIndex = 43;
 			this.ship2.TabStop = false;
 			this.ship2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ShipMouseDown);
@@ -586,9 +586,9 @@ namespace NavyBattles_CSharp
 			// 
 			this.ship3.BackColor = System.Drawing.Color.Transparent;
 			this.ship3.Image = ((System.Drawing.Image)(resources.GetObject("ship3.Image")));
-			this.ship3.Location = new System.Drawing.Point(284, 484);
+			this.ship3.Location = new System.Drawing.Point(288, 491);
 			this.ship3.Name = "ship3";
-			this.ship3.Size = new System.Drawing.Size(145, 47);
+			this.ship3.Size = new System.Drawing.Size(165, 40);
 			this.ship3.TabIndex = 44;
 			this.ship3.TabStop = false;
 			this.ship3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ShipMouseDown);
@@ -599,9 +599,9 @@ namespace NavyBattles_CSharp
 			// 
 			this.ship4.BackColor = System.Drawing.Color.Transparent;
 			this.ship4.Image = ((System.Drawing.Image)(resources.GetObject("ship4.Image")));
-			this.ship4.Location = new System.Drawing.Point(33, 561);
+			this.ship4.Location = new System.Drawing.Point(28, 565);
 			this.ship4.Name = "ship4";
-			this.ship4.Size = new System.Drawing.Size(202, 50);
+			this.ship4.Size = new System.Drawing.Size(205, 40);
 			this.ship4.TabIndex = 45;
 			this.ship4.TabStop = false;
 			this.ship4.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ShipMouseDown);
@@ -612,9 +612,9 @@ namespace NavyBattles_CSharp
 			// 
 			this.ship5.BackColor = System.Drawing.Color.Transparent;
 			this.ship5.Image = ((System.Drawing.Image)(resources.GetObject("ship5.Image")));
-			this.ship5.Location = new System.Drawing.Point(241, 570);
+			this.ship5.Location = new System.Drawing.Point(256, 565);
 			this.ship5.Name = "ship5";
-			this.ship5.Size = new System.Drawing.Size(228, 41);
+			this.ship5.Size = new System.Drawing.Size(250, 40);
 			this.ship5.TabIndex = 46;
 			this.ship5.TabStop = false;
 			this.ship5.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ShipMouseDown);
