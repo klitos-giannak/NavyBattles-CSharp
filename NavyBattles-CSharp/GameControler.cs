@@ -155,12 +155,9 @@ namespace NavyBattles_CSharp
 		
 		public void playFirst(bool first)
 		{
-			if (first)
-			{
-				//say UI   PLAY otan ta ploia einai topothetimena na ksekinaeito game
-				
-				
-			}	
+							
+			firstPlayer=first;	
+							
 			
 		}
 		
