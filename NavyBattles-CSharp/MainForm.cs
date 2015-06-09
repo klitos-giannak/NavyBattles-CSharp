@@ -37,13 +37,13 @@ namespace NavyBattles_CSharp
 		
 		void JoinButtonClick(object sender, EventArgs e)
 		{
-			net.joinGame(ipTextBox.Text);
+//			net.joinGame(ipTextBox.Text);
 			
 			backEnd=new GameControler(net);
 			net.Backend = backEnd;
 			backEnd.connected();
 			
-			net.receiveOrder();
+//			net.receiveOrder();
 			
 		}
 		void HostButtonClick(object sender, EventArgs e)

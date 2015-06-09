@@ -7,12 +7,11 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 using System;
+using System.ComponentModel;
 using System.Drawing;
-using System.IO;
-using System.Reflection;
-using System.Resources;
 using System.Windows.Forms;
 using NavyBattles_CSharp.Data;
+
 
 namespace NavyBattles_CSharp
 {
@@ -24,8 +23,9 @@ namespace NavyBattles_CSharp
 		private Point location;
 		private GameControler gameControler;
 		private GameData data;
-		private PictureBox[,] myBombs;
-		private PictureBox[,] enemyBombs;
+		private BombPicture[,] myBombs;
+		private BombPicture[,] enemyBombs;
+		private ImageHolder imageHolder;
 		
 		public GameAreaForm(GameControler gameControler,GameData data)
 		{
@@ -35,29 +35,34 @@ namespace NavyBattles_CSharp
 			InitializeComponent();
 			this.gameControler=gameControler;
 			this.data=data;
+			imageHolder = new ImageHolder(new System.ComponentModel
+			                              .ComponentResourceManager(typeof(GameAreaForm)));
 
-			myBombs = new PictureBox[myBoard.getGridSize(),myBoard.getGridSize()];
-			enemyBombs = new PictureBox[enemyBoard.getGridSize(),enemyBoard.getGridSize()];
+			myBombs = new BombPicture[myBoard.getGridSize(),myBoard.getGridSize()];
+			enemyBombs = new BombPicture[enemyBoard.getGridSize(),enemyBoard.getGridSize()];
 			
 			for(int i=0 ; i<myBoard.getGridSize() ; i++)
 			{
 				for(int  j=0 ; j<myBoard.getGridSize() ; j++)
 				{
-					myBombs[i,j] = new PictureBox();
 					Coords coords = myBoard.getGridCoords(i,j);
-					myBombs[i,j].Location = new Point(coords.X+myBoard.Location.X, coords.Y+myBoard.Location.Y);
+					myBombs[i,j] = new BombPicture
+						(coords.X+myBoard.Location.X, coords.Y+myBoard.Location.Y, imageHolder);
 					this.Controls.Add(myBombs[i,j]);
 					
-					enemyBombs[i,j] = new PictureBox();
 					coords = enemyBoard.getGridCoords(i,j);
-					enemyBombs[i,j].Location = new Point(coords.X+enemyBoard.Location.X, coords.Y+enemyBoard.Location.Y);
+					enemyBombs[i,j] = new BombPicture
+						(coords.X+enemyBoard.Location.X, coords.Y+enemyBoard.Location.Y, imageHolder);
 					this.Controls.Add(enemyBombs[i,j]);
 				}
 			}
 			
+			myBoard.SendToBack();
+			enemyBoard.SendToBack();
+			
+			
 			data.setMyBoxState(5,5, GameData.BoxState.BOMBED);
 			data.setEnemyBoxState(7,7, GameData.BoxState.MISSED);
-					
 		}
 		
 		void ShipMouseMove(object sender, MouseEventArgs e)
@@ -139,28 +144,14 @@ namespace NavyBattles_CSharp
 		protected override void OnPaint(PaintEventArgs e)
 		{
 			base.OnPaint(e);
-//			ResourceManager resources = new ResourceManager("NavyBattles-CSharp.Resource1.resx", Assembly.GetExecutingAssembly());
+			
 			for(int i=0 ; i<myBoard.getGridSize() ; i++)
 			{
 				for(int  j=0 ; j<myBoard.getGridSize() ; j++)
 				{
-					if(data.getMyBoxState(i,j)==GameData.BoxState.BOMBED)
-					{
-//						myBombs[i,j].Image = (Bitmap)resources.GetObject("bombed.png");
-					}
-					else if(data.getMyBoxState(i,j)==GameData.BoxState.MISSED)
-					{
-//						myBombs[i,j].Image = (Bitmap)resources.GetObject("missed.png");
-					}
-					
-					if(data.getEnemyBoxState(i,j)==GameData.BoxState.BOMBED)
-					{
-//						enemyBombs[i,j].Image = (Bitmap)resources.GetObject("bombed.png");
-					}
-					else if(data.getEnemyBoxState(i,j)==GameData.BoxState.MISSED)
-					{
-//						enemyBombs[i,j].Image = (Bitmap)resources.GetObject("missed.png");
-					}
+					myBombs[i,j].State = data.getMyBoxState(i,j);	
+
+					enemyBombs[i,j].State = data.getEnemyBoxState(i,j);	
 				}
 			}
 		}
