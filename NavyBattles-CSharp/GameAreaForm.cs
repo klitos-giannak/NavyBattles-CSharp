@@ -20,13 +20,15 @@ namespace NavyBattles_CSharp
 	{
 		private Point location;
 		private GameControler gameControler;
-		public GameAreaForm(GameControler gameControler)
+		private GameData data;
+		public GameAreaForm(GameControler gameControler,GameData data)
 		{
 			//
 			// The InitializeComponent() call is required for Windows Forms designer support.
 			//
 			InitializeComponent();
 			this.gameControler=gameControler;
+			this.data=data;
 			//
 			// TODO: Add constructor code after the InitializeComponent() call.
 			//
@@ -106,6 +108,34 @@ namespace NavyBattles_CSharp
 		{
 			//check if all ships are located to the grid
 			return true;
+		}
+		
+		protected override void OnPaint(PaintEventArgs e)
+		{
+			base.OnPaint(e);
+			for(int i=0 ; i<myBoard.getGridSize() ; i++)
+			{
+				for(int  j=0 ; j<myBoard.getGridSize() ; j++)
+				{
+					if(data.getMyBoxState(i,j)==GameData.BoxState.BOMBED)
+					{
+						
+					}
+					else if(data.getMyBoxState(i,j)==GameData.BoxState.MISSED)
+					{
+						
+					}
+					
+					if(data.getEnemyBoxState(i,j)==GameData.BoxState.BOMBED)
+					{
+						
+					}
+					else if(data.getEnemyBoxState(i,j)==GameData.BoxState.MISSED)
+					{
+						
+					}
+				}
+			}
 		}
 	}
 }

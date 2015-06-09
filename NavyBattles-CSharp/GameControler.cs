@@ -31,7 +31,7 @@ namespace NavyBattles_CSharp
 		{
 			net = network;
 			data=new GameData();
-			gameForm=new GameAreaForm(this);
+			gameForm=new GameAreaForm(this,data);
 			meReady=false;
 			otherReady=false;
 		}

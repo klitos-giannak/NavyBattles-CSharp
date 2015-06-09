@@ -78,5 +78,11 @@ namespace NavyBattles_CSharp
 			
 			return new Coords( pointX, pointY);
 		}
+		
+		public int getGridSize()
+		{
+			return 10;
+		}
+		
 	}
 }
