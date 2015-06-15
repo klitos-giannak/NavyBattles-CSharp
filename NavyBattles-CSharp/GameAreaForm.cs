@@ -89,14 +89,45 @@ namespace NavyBattles_CSharp
 					int gridx=myBoard.convertWindowToGridXCoordinate(loc.X-myBoard.Location.X);
 					int gridy=myBoard.convertWindowToGridYCoordinate(loc.Y-myBoard.Location.Y);
 //					MessageBox.Show(gridx + "\n" + gridy);
+					Direction direction=Direction.HORIZONTAL;
+					if(ship.Height > ship.Width)
+						direction=Direction.VERTICAL;
 					
-					Coords blockCoords = myBoard.getGridCoords(gridx, gridy);
-					Point newLocation = new Point(blockCoords.X + myBoard.Location.X, blockCoords.Y + myBoard.Location.Y);
-					ship.Location = newLocation;
+					int size=0;
+					if(ship.Equals(ship1))
+						size=2;
+					
+					else if(ship.Equals(ship2))
+						size=3;
+					
+					else if(ship.Equals(ship3))
+						size=4;
+					
+					else if(ship.Equals(ship4))
+						size=5;
+					
+					else if(ship.Equals(ship5))
+						size=6;
+					
+					Coords startloc =new Coords(gridx,gridy);
+					if(islocationvalid(startloc,direction,size))
+					{
+						Coords blockCoords = myBoard.getGridCoords(gridx, gridy);
+						Point newLocation = new Point(blockCoords.X + myBoard.Location.X, blockCoords.Y + myBoard.Location.Y);
+						ship.Location = newLocation;
+						data.initShip(size,direction,startloc);
+					}
+					else
+						ship.Location=location;
 				}	
 			}
 			location=Point.Empty;
 			
+		}
+		
+		private bool islocationvalid(Coords coords,Direction direction,int size)
+		{
+			return false;
 		}
 		
 		void ShipMouseDown(object sender, MouseEventArgs e)
