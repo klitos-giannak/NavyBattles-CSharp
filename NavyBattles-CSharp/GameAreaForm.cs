@@ -60,9 +60,9 @@ namespace NavyBattles_CSharp
 			myBoard.SendToBack();
 			enemyBoard.SendToBack();
 			
-			
-			data.setMyBoxState(5,5, GameData.BoxState.BOMBED);
-			data.setEnemyBoxState(7,7, GameData.BoxState.MISSED);
+			//test the drawing of bombpictures
+			//data.setMyBoxState(5,5, GameData.BoxState.BOMBED);
+			//data.setEnemyBoxState(7,7, GameData.BoxState.MISSED);
 		}
 		
 		void ShipMouseMove(object sender, MouseEventArgs e)
