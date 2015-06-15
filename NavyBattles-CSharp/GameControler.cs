@@ -27,6 +27,7 @@ namespace NavyBattles_CSharp
 		
 		
 		
+		
 		public GameControler(NetworkController network)
 		{
 			net = network;
