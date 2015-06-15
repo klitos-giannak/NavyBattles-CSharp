@@ -45,6 +45,20 @@ namespace NavyBattles_CSharp.Data
 				return null;
 		}
 		
+		
+		public bool areAllShipsLocated()
+		{
+			for(int i=2;i<7;i++)
+			{
+				if(getShip(i)==null)
+			   		return false;
+			   
+			}
+			return true;
+		}
+		
+		
+		
 		public bool isBlockOccupied(Coords block)
 		{
 			foreach(Ship ship in allShips.Values)

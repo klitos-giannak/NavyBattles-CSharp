@@ -87,6 +87,11 @@ namespace NavyBattles_CSharp.Data
 			
 		}
 		
+		public bool areAllShipsLocated()
+		{
+			return fleet.areAllShipsLocated();
+		}
+		
 		
 		private bool areBlocksFree(int size, Direction direction, Coords firstBlock)
 		{
