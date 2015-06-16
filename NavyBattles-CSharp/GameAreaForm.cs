@@ -26,6 +26,8 @@ namespace NavyBattles_CSharp
 		private BombPicture[,] myBombs;
 		private BombPicture[,] enemyBombs;
 		private ImageHolder imageHolder;
+		private bool myTurn=false;
+			
 		
 		public GameAreaForm(GameControler gameControler,GameData data)
 		{
@@ -166,6 +168,7 @@ namespace NavyBattles_CSharp
 				labelTurn.Text="Enemy Turn" ;
 				labelTurn.ForeColor=Color.Red;				
 			}
+			myTurn = play;
 		}
 		
 		void StartGameButtonClick(object sender, EventArgs e)
@@ -200,5 +203,22 @@ namespace NavyBattles_CSharp
 				}
 			}
 		}
+		
+		void EnemyBoardMouseClick(object sender, MouseEventArgs e)
+		{
+			if(myTurn)
+			{
+				int gridx=enemyBoard.convertWindowToGridXCoordinate(e.X);
+				int gridy=enemyBoard.convertWindowToGridYCoordinate(e.Y);
+				if(gridx != -1 && gridy != -1)
+				{
+					gameControler.shoot(new Coords(gridx,gridy));
+					enablePlay(false);
+				}
+				
+			}
+		}
+		
+
 	}
 }

@@ -116,6 +116,7 @@ namespace NavyBattles_CSharp
 			this.enemyBoard.Size = new System.Drawing.Size(450, 450);
 			this.enemyBoard.TabIndex = 1;
 			this.enemyBoard.Text = "Enemy Board";
+			this.enemyBoard.MouseClick += new System.Windows.Forms.MouseEventHandler(this.EnemyBoardMouseClick);
 			// 
 			// label1
 			// 
@@ -711,6 +712,7 @@ namespace NavyBattles_CSharp
 			this.ResumeLayout(false);
 
 		}
+		
 		private System.Windows.Forms.PictureBox ship5;
 		private System.Windows.Forms.PictureBox ship4;
 		private System.Windows.Forms.PictureBox ship3;
