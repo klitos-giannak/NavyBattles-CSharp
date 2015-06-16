@@ -28,6 +28,8 @@ namespace NavyBattles_CSharp.Data
 		{
 			if(size <=6 && size>=2 )
 			{
+				if(allShips.ContainsKey(size))
+					allShips.Remove(size);
 				allShips.Add(size, new Ship(size,direction,firstBlock));
 			}
 			else 

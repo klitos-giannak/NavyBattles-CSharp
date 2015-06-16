@@ -93,18 +93,20 @@ namespace NavyBattles_CSharp.Data
 		}
 		
 		
-		private bool areBlocksFree(int size, Direction direction, Coords firstBlock)
+		public bool areBlocksFree(int size, Direction direction, Coords firstBlock)
 		{
 			for (int i=0 ; i<size ; i++)
 			{
 				if(direction==Direction.VERTICAL)
 				{
-					if(fleet.isBlockOccupied(new Coords(firstBlock.X,firstBlock.Y+i)))
+					if(firstBlock.X >= GRIDSIZE || firstBlock.Y+i >= GRIDSIZE ||
+						fleet.isBlockOccupied(new Coords(firstBlock.X,firstBlock.Y+i)))
 						return false;
 				}
 				else					
 				{
-					if(fleet.isBlockOccupied(new Coords(firstBlock.X+i,firstBlock.Y)))
+					if(firstBlock.X+i >= GRIDSIZE || firstBlock.Y >= GRIDSIZE ||
+					   fleet.isBlockOccupied(new Coords(firstBlock.X+i,firstBlock.Y)))
 						return false;
 				}
 			}

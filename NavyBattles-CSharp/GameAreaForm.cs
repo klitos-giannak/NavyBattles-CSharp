@@ -128,7 +128,7 @@ namespace NavyBattles_CSharp
 		
 		private bool islocationvalid(Coords coords,Direction direction,int size)
 		{
-			return false;
+			return data.areBlocksFree(size,direction,coords);
 		}
 		
 		void ShipMouseDown(object sender, MouseEventArgs e)
