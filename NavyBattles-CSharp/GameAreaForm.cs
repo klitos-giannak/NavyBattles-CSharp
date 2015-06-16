@@ -35,6 +35,7 @@ namespace NavyBattles_CSharp
 			InitializeComponent();
 			this.gameControler=gameControler;
 			this.data=data;
+			labelTurn.Hide();
 			imageHolder = new ImageHolder(new System.ComponentModel
 			                              .ComponentResourceManager(typeof(GameAreaForm)));
 
@@ -154,7 +155,17 @@ namespace NavyBattles_CSharp
 		
 		public void enablePlay(bool play)
 		{
-			// enable or disable play
+			labelTurn.Show();
+			if(play)
+			{
+				labelTurn.Text="Your Turn" ;
+				labelTurn.ForeColor=Color.LawnGreen;
+			}
+			else
+			{
+				labelTurn.Text="Enemy Turn" ;
+				labelTurn.ForeColor=Color.Red;				
+			}
 		}
 		
 		void StartGameButtonClick(object sender, EventArgs e)

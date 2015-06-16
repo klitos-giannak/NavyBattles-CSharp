@@ -88,6 +88,7 @@ namespace NavyBattles_CSharp
 			this.ship4 = new System.Windows.Forms.PictureBox();
 			this.ship5 = new System.Windows.Forms.PictureBox();
 			this.startGameButton = new System.Windows.Forms.Button();
+			this.labelTurn = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.ship1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.ship2)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.ship3)).BeginInit();
@@ -623,13 +624,25 @@ namespace NavyBattles_CSharp
 			// 
 			// startGameButton
 			// 
-			this.startGameButton.Location = new System.Drawing.Point(537, 494);
+			this.startGameButton.Location = new System.Drawing.Point(790, 483);
 			this.startGameButton.Name = "startGameButton";
-			this.startGameButton.Size = new System.Drawing.Size(107, 61);
+			this.startGameButton.Size = new System.Drawing.Size(123, 45);
 			this.startGameButton.TabIndex = 47;
 			this.startGameButton.Text = "Start";
 			this.startGameButton.UseVisualStyleBackColor = true;
 			this.startGameButton.Click += new System.EventHandler(this.StartGameButtonClick);
+			// 
+			// labelTurn
+			// 
+			this.labelTurn.BackColor = System.Drawing.Color.Transparent;
+			this.labelTurn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+			this.labelTurn.ForeColor = System.Drawing.Color.LawnGreen;
+			this.labelTurn.Location = new System.Drawing.Point(790, 540);
+			this.labelTurn.Name = "labelTurn";
+			this.labelTurn.Size = new System.Drawing.Size(136, 40);
+			this.labelTurn.TabIndex = 48;
+			this.labelTurn.Text = "Your Turn";
+			this.labelTurn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
 			// GameAreaForm
 			// 
@@ -638,6 +651,7 @@ namespace NavyBattles_CSharp
 			this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
 			this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
 			this.ClientSize = new System.Drawing.Size(968, 640);
+			this.Controls.Add(this.labelTurn);
 			this.Controls.Add(this.startGameButton);
 			this.Controls.Add(this.ship5);
 			this.Controls.Add(this.ship4);
@@ -742,5 +756,6 @@ namespace NavyBattles_CSharp
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.PictureBox ship1;
 		private System.Windows.Forms.Button startGameButton;
+		private System.Windows.Forms.Label labelTurn;
 	}
 }
