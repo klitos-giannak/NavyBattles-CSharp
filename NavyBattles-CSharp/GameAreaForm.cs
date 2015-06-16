@@ -26,6 +26,7 @@ namespace NavyBattles_CSharp
 		private BombPicture[,] myBombs;
 		private BombPicture[,] enemyBombs;
 		private ImageHolder imageHolder;
+		private bool shipsLocked=false;
 		
 		public GameAreaForm(GameControler gameControler,GameData data)
 		{
@@ -134,22 +135,25 @@ namespace NavyBattles_CSharp
 		
 		void ShipMouseDown(object sender, MouseEventArgs e)
 		{
-			if(e.Button==MouseButtons.Left) 
+			if(!shipsLocked)
 			{
-				PictureBox ship = sender as PictureBox;
-				Point loc = ship.Location;
-				shipOffset = new Point (e.X, e.Y);
-				shipInitialLocation=new Point (e.X+loc.X,e.Y+loc.Y);
-			}
-			else
-			{
-				PictureBox ship = sender as PictureBox;
-				int width=ship.Width;
-				int height=ship.Height;
-				ship.Image.RotateFlip(RotateFlipType.Rotate270FlipY);
-				ship.Width=height;
-				ship.Height=width;
-				ship.Invalidate();
+				if(e.Button==MouseButtons.Left) 
+				{
+					PictureBox ship = sender as PictureBox;
+					Point loc = ship.Location;
+					shipOffset = new Point (e.X, e.Y);
+					shipInitialLocation=new Point (e.X+loc.X,e.Y+loc.Y);
+				}
+				else
+				{
+					PictureBox ship = sender as PictureBox;
+					int width=ship.Width;
+					int height=ship.Height;
+					ship.Image.RotateFlip(RotateFlipType.Rotate270FlipY);
+					ship.Width=height;
+					ship.Height=width;
+					ship.Invalidate();
+				}
 			}
 		}
 		
@@ -174,6 +178,7 @@ namespace NavyBattles_CSharp
 			{
 				gameControler.iAmReady();
 				startGameButton.Hide();
+				shipsLocked=true;
 			}
 			else 
 			{
