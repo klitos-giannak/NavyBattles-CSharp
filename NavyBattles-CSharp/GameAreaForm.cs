@@ -20,7 +20,7 @@ namespace NavyBattles_CSharp
 	/// </summary>
 	public partial class GameAreaForm : Form
 	{
-		private Point location;
+		private Point shipInitialLocation, shipOffset;
 		private GameControler gameControler;
 		private GameData data;
 		private BombPicture[,] myBombs;
@@ -67,20 +67,21 @@ namespace NavyBattles_CSharp
 		
 		void ShipMouseMove(object sender, MouseEventArgs e)
 		{
-			if (location!=Point.Empty)
+			if (shipInitialLocation!=Point.Empty)
 			{
 				PictureBox ship=sender as PictureBox;
 				Point newLocation=ship.Location;
-				newLocation.X+=e.X-location.X;
-				newLocation.Y+=e.Y-location.Y;
+				newLocation.X+=e.X-shipOffset.X;
+				newLocation.Y+=e.Y-shipOffset.Y;
 				ship.Location=newLocation;
 			}
 		}
 		
 		void ShipMouseUp(object sender, MouseEventArgs e)
 		{
-			if (location!=Point.Empty)
+			if (shipInitialLocation!=Point.Empty)
 			{
+				bool returnToInitialPosition = true;
 				PictureBox ship=sender as PictureBox;
 				Point loc=ship.Location;
 				if(loc.X > myBoard.Location.X && loc.X <= myBoard.Location.X + myBoard.Width
@@ -96,16 +97,12 @@ namespace NavyBattles_CSharp
 					int size=0;
 					if(ship.Equals(ship1))
 						size=2;
-					
 					else if(ship.Equals(ship2))
 						size=3;
-					
 					else if(ship.Equals(ship3))
 						size=4;
-					
 					else if(ship.Equals(ship4))
 						size=5;
-					
 					else if(ship.Equals(ship5))
 						size=6;
 					
@@ -116,13 +113,17 @@ namespace NavyBattles_CSharp
 						Point newLocation = new Point(blockCoords.X + myBoard.Location.X, blockCoords.Y + myBoard.Location.Y);
 						ship.Location = newLocation;
 						data.initShip(size,direction,startloc);
+						returnToInitialPosition = false;
 					}
-					else
-						ship.Location=location;
-				}	
-			}
-			location=Point.Empty;
-			
+				}
+				if(returnToInitialPosition) {
+					Point returnLocation = ship.Location;
+					returnLocation.X =shipInitialLocation.X-shipOffset.X;
+					returnLocation.Y = shipInitialLocation.Y-shipOffset.Y;
+					ship.Location = returnLocation;
+				}
+				shipInitialLocation=Point.Empty;
+			}			
 		}
 		
 		private bool islocationvalid(Coords coords,Direction direction,int size)
@@ -134,7 +135,10 @@ namespace NavyBattles_CSharp
 		{
 			if(e.Button==MouseButtons.Left) 
 			{
-				location=new Point (e.X,e.Y);
+				PictureBox ship = sender as PictureBox;
+				Point loc = ship.Location;
+				shipOffset = new Point (e.X, e.Y);
+				shipInitialLocation=new Point (e.X+loc.X,e.Y+loc.Y);
 			}
 			else
 			{
@@ -168,8 +172,7 @@ namespace NavyBattles_CSharp
 		}
 		private bool allShipsLocated()
 		{
-			//check if all ships are located to the grid
-			return true;
+			return data.areAllShipsLocated();
 		}
 		
 		protected override void OnPaint(PaintEventArgs e)
