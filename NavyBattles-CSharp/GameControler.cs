@@ -23,10 +23,7 @@ namespace NavyBattles_CSharp
 		private GameAreaForm gameForm;
 		private bool meReady;
 		private bool otherReady;
-		private bool firstPlayer;
-		
-		
-		
+		private bool firstPlayer;		
 		
 		public GameControler(NetworkController network)
 		{
@@ -36,12 +33,23 @@ namespace NavyBattles_CSharp
 			meReady=false;
 			otherReady=false;
 		}
+		public delegate void EnablePlayCallback(bool play);
 		
 		private void startGame()
 		{
 			if(firstPlayer) 
 			{
-				gameForm.enablePlay(true);
+				if (gameForm.InvokeRequired)
+				{	
+					EnablePlayCallback epc = new EnablePlayCallback(gameForm.enablePlay);
+					gameForm.Invoke(epc, new object[] { true });
+				}
+				else
+				{
+					gameForm.enablePlay(true);
+				}
+				
+				
 			}
 			else
 			{
