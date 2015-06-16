@@ -34,6 +34,7 @@ namespace NavyBattles_CSharp
 			otherReady=false;
 		}
 		public delegate void EnablePlayCallback(bool play);
+		public delegate void InvalidateCallback();
 		
 		private void startGame()
 		{
@@ -48,8 +49,6 @@ namespace NavyBattles_CSharp
 				{
 					gameForm.enablePlay(true);
 				}
-				
-				
 			}
 			else
 			{
@@ -93,7 +92,17 @@ namespace NavyBattles_CSharp
 				shot.Hit = false;
 			}
 			
-			gameForm.Invalidate();
+			if (gameForm.InvokeRequired)
+			{	
+				InvalidateCallback epc = new InvalidateCallback(gameForm.Invalidate);
+				gameForm.Invoke(epc);
+			}
+			else
+			{
+				gameForm.Invalidate();
+			}
+			
+			
 			
 			return shot;
 				                   
@@ -131,7 +140,15 @@ namespace NavyBattles_CSharp
 				                   GameData.BoxState.MISSED);
 			}
 			
-			gameForm.Invalidate();
+			if (gameForm.InvokeRequired)
+			{	
+				InvalidateCallback epc = new InvalidateCallback(gameForm.Invalidate);
+				gameForm.Invoke(epc);
+			}
+			else
+			{
+				gameForm.Invalidate();
+			}
 			
 			return !checkEndGame();
 		}
@@ -139,7 +156,15 @@ namespace NavyBattles_CSharp
 		public void endOrPlay()
 		{
 			if(!checkEndGame())
-				gameForm.enablePlay(true);
+				if (gameForm.InvokeRequired)
+				{	
+					EnablePlayCallback epc = new EnablePlayCallback(gameForm.enablePlay);
+					gameForm.Invoke(epc, new object[] { true });
+				}
+				else
+				{
+					gameForm.enablePlay(true);
+				}
 			
 		}
 		
