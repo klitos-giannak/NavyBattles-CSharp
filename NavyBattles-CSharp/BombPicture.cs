@@ -7,7 +7,6 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 using System;
-using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 using NavyBattles_CSharp.Data;
@@ -29,6 +28,7 @@ namespace NavyBattles_CSharp
 			BackColor= Color.Transparent;
 			Location = new Point(x, y);
 			Size = new Size(40,40);
+			SendToBack();
 		}
 		
 		public GameData.BoxState State
@@ -49,11 +49,35 @@ namespace NavyBattles_CSharp
 		private void updateImage()
 		{
 			if(state == GameData.BoxState.BOMBED)
+			{
 				Image = imageHolder.getBombedImage();
-			else if(state == GameData.BoxState.MISSED)				
+				BringToFront();
+			}
+			else if(state == GameData.BoxState.MISSED)
+			{
 				Image = imageHolder.getMissedImage();
+				BringToFront();
+			}
 			else
+			{
 				Image = null;
+				SendToBack();
+			}
+		}
+		
+		protected override void WndProc(ref Message m)
+		{
+		    const int WM_NCHITTEST = 0x0084;
+		    const int HTTRANSPARENT = (-1);
+		
+		    if (m.Msg == WM_NCHITTEST)
+		    {
+		        m.Result = (IntPtr)HTTRANSPARENT;
+		    }
+		    else
+		    {
+		        base.WndProc(ref m);
+		    }
 		}
 	}
 }
